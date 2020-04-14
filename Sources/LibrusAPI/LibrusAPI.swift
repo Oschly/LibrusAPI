@@ -6,26 +6,18 @@
 //  Copyright © 2020 Oschly. All rights reserved.
 //
 
-import Combine
 import Foundation
 import SwiftSoup
 
 class LibrusAPI: NSObject {
   
-  private let configuration = URLSessionConfiguration.default
-  private let session: URLSession = {
-    let session = URLSession(configuration: .default, delegate: nil, delegateQueue: nil)
-    session.configuration.protocolClasses?.insert(CustomProtol.self, at: 0)
-    URLProtocol.registerClass(CustomProtol.self)
-    
-    return session
-  }()
+  private var session: URLSession!
   
-  private var subscriptions = [AnyCancellable]()
+  var semaphore = DispatchSemaphore(value: 1)
   
-  private var csrfToken = PassthroughSubject<CSRFToken, Error>()
-  private var authCode = PassthroughSubject<AuthCode, Error>()
-  private var accessToken = PassthroughSubject<AccessToken, Error>()
+  private var csrfToken: CSRFToken?
+  private var authCode: AuthCode?
+  private var accessToken: AccessToken?
   
   private(set) var email: String?
   private(set) var password: String?
@@ -34,39 +26,38 @@ class LibrusAPI: NSObject {
     super.init()
     self.email = email
     self.password = password
-    try! getNewCSRFToken()
-    try! updateCookies()
-    try! getAuthCode()
     
-    accessToken.print().sink(receiveCompletion: { _ in }) { _ in }.store(in: &subscriptions)
-    }
+    let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+    self.session = session
+    
+    verificationProcess()
+  }
   
-  func getNewCSRFToken() throws {
+  func getNewCSRFToken() {
+    semaphore.wait()
     var request = URLRequest(url: URL(string: "https://portal.librus.pl/oauth2/authorize?client_id=6XPsKf10LPz1nxgHQLcvZ1KM48DYzlBAhxipaXY8&redirect_uri=http://localhost/bar&response_type=code")!)
     request.httpMethod = "GET"
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
     
-    URLSession.shared
-      .dataTaskPublisher(for: request)
-      .mapError { error in APIError.connectionError }
-      .tryMap { data, response in
-        guard let html = String(data: data, encoding: .utf8) else {
-          throw ScrappingError.errorDecodingData
+    session.dataTask(with: request) { data, response, error in
+      if let error = error {
+        // TODO: Error to handle
+        print(error)
+        return
+      }
+      
+      if let data = data,
+        let html = String(data: data, encoding: .utf8),
+        let doc = try? SwiftSoup.parse(html) as Document,
+        let csrf = try? doc.head()?.child(4).attr("content") {
+        DispatchQueue.main.async { [weak self] in
+          guard let self = self else { return }
+          self.csrfToken = CSRFToken(key: csrf)
+          self.semaphore.signal()
         }
-        guard let doc = try? SwiftSoup.parse(html) as Document else { throw ScrappingError.errorGettingAttribute }
-        guard let csrf = try? doc.head()?.child(4).attr("content") else {
-          throw ScrappingError.errorGettingAttribute
-        }
-        
-        return CSRFToken(key: csrf)
+      }
     }
-    .receive(on: DispatchQueue.main)
-    .sink(receiveCompletion: { completion in
-      #warning("Error to handle")
-    }, receiveValue: { token in
-      self.csrfToken.send(token)
-    })
-      .store(in: &subscriptions)
+    .resume()
   }
   
   func createRequest() throws -> URLRequest {
@@ -88,109 +79,80 @@ class LibrusAPI: NSObject {
     do {
       let body = try JSONSerialization.data(withJSONObject: body, options: [])
       request.httpBody = body
-      request.httpMethod = "POST"
-      request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
-      request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
-      
     } catch {
       print(error)
     }
     
-    csrfToken
-      .sink(receiveCompletion: { completion in
-        #warning("Error to handle")
-      }, receiveValue: { token in
-        request.addValue(token.key, forHTTPHeaderField: "X-CSRF-TOKEN")
-      })
-      .store(in: &subscriptions)
-    
+    if let token = csrfToken {
+      request.httpMethod = "POST"
+      request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
+      request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
+      request.addValue(token.key, forHTTPHeaderField: "X-CSRF-TOKEN")
+    }    
     return request
   }
   
-  func updateCookies() throws {
+  func updateCookies() {
+    semaphore.wait()
     guard let request = try? createRequest() else {
-      throw APIError.noCredentials
+      preconditionFailure()
     }
     
     URLSession.shared.dataTask(with: request) { _, _, error in
+      defer { self.semaphore.signal() }
+      // TODO: - Handle error
     }
   }
   
-  func getAuthCode() throws {
+  func getAuthCode() {
+    semaphore.wait()
     let url = URL(string: "https://portal.librus.pl/ouath2/authorize?client_id=wmSyUMo8llDAs4y9tJVYY92oyZ6h4lAt7KCuy0Gv&redirect_uri=http://localhost/bar&response_type=code")!
     
     var request = URLRequest(url: url)
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
     
     session.dataTask(with: request) { _, _, error in
+      defer { self.semaphore.signal() }
       if let error = error {
         print(error.localizedDescription)
         return
       }
-      
-      guard let data = CustomClientProtocol.shared.data,
-        var localhostUrl = String(data: data, encoding: .utf8),
-        let lastUselessIndex = localhostUrl.firstIndex(of: "=") else { return }
-      print(String(data: data, encoding: .utf8))
-      localhostUrl.removeSubrange(localhostUrl.startIndex...lastUselessIndex)
-      print(localhostUrl)
-      
-      DispatchQueue.main.async {
-        let token = AccessToken(key: localhostUrl, creationDate: Date())
-        self.accessToken.send(token)
-        print(token)
+    }
+    .resume()
+  }
+  
+  private func verificationProcess() {
+    DispatchQueue.global(qos: .utility).async {
+      self.getNewCSRFToken()
+      self.updateCookies()
+      self.getAuthCode()
+    }
+  }
+  
+  fileprivate func cutCodeFrom(string: String) -> String? {
+    guard let cutEndIndex = string.firstIndex(of: "=") else { return nil }
+    let startIndex = string.startIndex
+    
+    var code = string
+    code.removeSubrange(startIndex...cutEndIndex)
+    
+    return code
+  }
+}
+
+extension LibrusAPI: URLSessionTaskDelegate {
+  func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
+    if request.url!.absoluteString.starts(with: "http://localhost") {
+      guard let stringURL = request.url?.absoluteString,
+        let code = cutCodeFrom(string: stringURL)  else { return }
+      DispatchQueue.main.async { [weak self] in
+        guard let self = self else { return }
+        self.authCode = AuthCode(key: code)
       }
-
+      
+      task.cancel()
     }
-      .resume()
+    
+    completionHandler(request)
   }
-  
-}
-
-class CustomProtol: URLProtocol {
-  override var client: URLProtocolClient? { CustomClientProtocol.shared }
-  override class func canInit(with request: URLRequest) -> Bool {
-    if request.url!.absoluteString.starts(with: "http://localhost") {
-      return true
-    }
-    return false
-  }
-  
-  override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
-  
-  override func startLoading() {
-    if request.url!.absoluteString.starts(with: "http://localhost") {
-      let data = request.url?.absoluteString.data(using: .utf8)
-      self.client?.urlProtocol(self, didLoad: data!)
-      self.client?.urlProtocolDidFinishLoading(self)
-    }
-  }
-  
-  override func stopLoading() {}
-}
-
-class CustomClientProtocol: NSObject, URLProtocolClient {
-  static let shared = CustomClientProtocol()
-  public var data: Data?
-  
-  func urlProtocol(_ protocol: URLProtocol, didLoad data: Data) {
-    self.data = data
-  }
-}
-
-// MARK: - Junk for this case
-extension CustomClientProtocol {
-  func urlProtocol(_ protocol: URLProtocol, wasRedirectedTo request: URLRequest, redirectResponse: URLResponse) {}
-  
-  func urlProtocol(_ protocol: URLProtocol, cachedResponseIsValid cachedResponse: CachedURLResponse) {}
-  
-  func urlProtocol(_ protocol: URLProtocol, didReceive response: URLResponse, cacheStoragePolicy policy: URLCache.StoragePolicy) {}
-  
-  func urlProtocolDidFinishLoading(_ protocol: URLProtocol) {}
-  
-  func urlProtocol(_ protocol: URLProtocol, didFailWithError error: Error) {}
-  
-  func urlProtocol(_ protocol: URLProtocol, didReceive challenge: URLAuthenticationChallenge) {}
-  
-  func urlProtocol(_ protocol: URLProtocol, didCancel challenge: URLAuthenticationChallenge) {}
 }
