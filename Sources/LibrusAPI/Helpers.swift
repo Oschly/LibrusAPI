@@ -9,9 +9,8 @@ import Foundation
 
 typealias CSRFToken = Token
 typealias AuthCode = Token
-typealias AccessToken = Token
 
-protocol RefreshableToken {
+protocol RefreshableToken: Codable {
   var key: String { get set }
   var creationDate: Date { get set }
 }
