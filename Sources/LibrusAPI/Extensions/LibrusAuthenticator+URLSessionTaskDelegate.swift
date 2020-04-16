@@ -18,7 +18,8 @@ extension LibrusAuthenticator: URLSessionTaskDelegate {
         let code = cutCodeFrom(string: stringURL)  else { return }
       DispatchQueue.main.async { [weak self] in
         guard let self = self else { return }
-        self.pass(AuthCode(key: code))
+        self.pass(AuthCode(token: code))
+        self.semaphore.signal()
       }
       
       task.cancel()

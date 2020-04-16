@@ -8,23 +8,51 @@
 import Foundation
 
 @propertyWrapper
-struct Storage<T> {
-    private let key: String
-    private let defaultValue: T
-    
-    init(key: String, defaultValue: T) {
-        self.key = key
-        self.defaultValue = defaultValue
+struct Storage<T: Codable> {
+  private let key: String
+  private let defaultValue: T
+  
+  init(key: String, defaultValue: T) {
+    self.key = key
+    self.defaultValue = defaultValue
+  }
+  
+  var wrappedValue: T {
+    get {
+      if let data = UserDefaults.standard.data(forKey: key) {
+        return try! PropertyListDecoder().decode(T.self, from: data)
+      } else {
+        return defaultValue
+      }
+      
     }
-    
-    var wrappedValue: T {
-        get {
-            // Read value from UserDefaults
-          return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
-        }
-        set {
-            // Set value to UserDefaults
-            UserDefaults.standard.set(newValue, forKey: key)
-        }
+    set {
+      // Set value to UserDefaults
+      UserDefaults.standard.set(
+        try! PropertyListEncoder().encode(newValue),
+        forKey: key)
     }
+  }
+}
+
+extension Storage where T: RefreshableToken {
+  var wrappedValue: T {
+    get {
+      if let data = UserDefaults.standard.data(forKey: key) {
+        let token = try! PropertyListDecoder().decode(T.self, from: data)
+        if token.expiration < Date() {
+          return defaultValue
+        }
+        
+        return token
+      } else {
+        return defaultValue
+      }
+    }
+    set {
+      UserDefaults.standard.set(
+        try! PropertyListEncoder().encode(newValue),
+        forKey: key)
+    }
+  }
 }

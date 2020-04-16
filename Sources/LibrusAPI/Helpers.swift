@@ -11,13 +11,13 @@ typealias CSRFToken = Token
 typealias AuthCode = Token
 
 protocol RefreshableToken: Codable {
-  var key: String { get set }
-  var creationDate: Date { get set }
+  var token: String { get }
+  var expiration: Date { get }
 }
 
 struct Token: RefreshableToken {
-  var key: String
-  var creationDate = Date()
+  let token: String
+  let expiration = Date()
 }
 
 protocol LibrusAPIError: Error {}

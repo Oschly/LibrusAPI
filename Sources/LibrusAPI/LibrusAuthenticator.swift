@@ -38,25 +38,29 @@ class LibrusAuthenticator: NSObject {
   }
   
   // Calling to too often causes problems with getting it.
-  // TODO: - Implement Date checking before requesting for new token
   func getNewCSRFToken() {
     semaphore.wait()
+    guard csrfToken == nil else { return }
     var request = URLRequest(url: URL(string: "https://portal.librus.pl/oauth2/authorize?client_id=6XPsKf10LPz1nxgHQLcvZ1KM48DYzlBAhxipaXY8&redirect_uri=http://localhost/bar&response_type=code")!)
     request.httpMethod = "GET"
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
     
     session.dataTask(with: request) { data, response, error in
-      if let error = error {
-        // TODO: Error to handle
+      if let error = error as? URLError {
+        // TODO: - Handle errors
+        if error.code == .cancelled {
+          return
+        }
         print(error)
       }
+      
       if let data = data,
         let html = String(data: data, encoding: .utf8),
         let doc = try? SwiftSoup.parse(html) as Document,
         let csrf = try? doc.head()?.child(4).attr("content") {
         DispatchQueue.main.async { [weak self] in
           guard let self = self else { return }
-          self.csrfToken = CSRFToken(key: csrf)
+          self.csrfToken = CSRFToken(token: csrf)
           self.semaphore.signal()
         }
       }
@@ -87,7 +91,7 @@ class LibrusAuthenticator: NSObject {
     request.httpMethod = "POST"
     request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
-    request.addValue(token.key, forHTTPHeaderField: "X-CSRF-TOKEN")
+    request.addValue(token.token, forHTTPHeaderField: "X-CSRF-TOKEN")
     
     return request
   }
@@ -139,7 +143,7 @@ class LibrusAuthenticator: NSObject {
     let body = [
       "client_id": "6XPsKf10LPz1nxgHQLcvZ1KM48DYzlBAhxipaXY8",
       "grant_type": "authorization_code",
-      "code": authCode.key,
+      "code": authCode.token,
       "redirect_uri": "http://localhost/bar"
       ].queryParameters
     
@@ -172,8 +176,12 @@ class LibrusAuthenticator: NSObject {
   private func verificationProcess() {
     DispatchQueue.global(qos: .utility).async {
       self.getNewCSRFToken()
+      
+      if self.csrfToken != nil {
       self.updateCookies()
       self.beginAcquiringAuthCode()
+      }
+      
       self.getAccessToken()
     }
   }
@@ -182,9 +190,3 @@ class LibrusAuthenticator: NSObject {
     self.authCode = authCode
   }
 }
-
-
-
-
-
-
