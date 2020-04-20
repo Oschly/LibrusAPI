@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: - Refactor to use Keychain instead of UserDefaults.
 @propertyWrapper
 struct Storage<T: Codable> {
   private let key: String

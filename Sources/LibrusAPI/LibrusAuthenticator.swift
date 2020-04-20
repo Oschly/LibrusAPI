@@ -46,6 +46,7 @@ class LibrusAuthenticator: NSObject {
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
     
     session.dataTask(with: request) { data, response, error in
+      defer { self.semaphore.signal() }
       if let error = error as? URLError {
         // TODO: - Handle errors
         if error.code == .cancelled {
@@ -61,11 +62,11 @@ class LibrusAuthenticator: NSObject {
         DispatchQueue.main.async { [weak self] in
           guard let self = self else { return }
           self.csrfToken = CSRFToken(token: csrf)
-          self.semaphore.signal()
         }
       }
     }
     .resume()
+    
   }
   
   func createRequest() throws -> URLRequest {
@@ -153,7 +154,6 @@ class LibrusAuthenticator: NSObject {
     
     session.dataTask(with: request) { [weak self] data, response, error in
       guard let self = self else { return }
-      defer { self.semaphore.signal() }
       if let error = error {
         print(error)
         return
@@ -163,11 +163,40 @@ class LibrusAuthenticator: NSObject {
       
       DispatchQueue.main.async {
         if let token = try? JSONDecoder.shared.decode(AccessToken.self, from: data) {
-          print(token)
+          self.accessToken = token
+          self.semaphore.signal()
+          return
         }
       }
     }
     .resume()
+    
+  }
+  
+  private func getAccountsToken() {
+    semaphore.wait()
+    guard let accessToken = accessToken else { preconditionFailure() }
+    let url = URL(string: "https://portal.librus.pl/api/v2/SynergiaAccounts")!
+    var request = URLRequest(url: url)
+    
+    request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
+    request.addValue("\(accessToken.type) \(accessToken.token)", forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+      guard let self = self else { return }
+      defer { self.semaphore.signal() }
+      
+      if let error = error {
+        print(error)
+        return
+      }
+      
+      if let data = data {
+        let list = try! JSONDecoder.shared.decode(AccessList.self, from: data)
+        dump(list)
+      }
+    }
+  .resume()
   }
   
   /// Initial process of getting all Synergia's IDs.
@@ -183,6 +212,7 @@ class LibrusAuthenticator: NSObject {
       }
       
       self.getAccessToken()
+      self.getAccountsToken()
     }
   }
   
