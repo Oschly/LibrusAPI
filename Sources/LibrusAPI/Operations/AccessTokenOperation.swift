@@ -17,7 +17,9 @@ final class AccessTokenOperation: AsyncOperation {
     guard let authCode = dependencies
       .compactMap({ ($0 as? AcquriringAuthCodeOperation)?.authCode })
       .first
-      else { return }
+      else {
+        state = .finished
+        return }
     
     let url = URL(string: "https://portal.librus.pl/oauth2/access_token")!
     var request = URLRequest(url: url)

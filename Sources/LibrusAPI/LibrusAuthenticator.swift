@@ -38,6 +38,11 @@ class LibrusAuthenticator: NSObject {
     accessTokenOp.addDependency(authCodeOp)
     let accountsListOp = AccountsListOperation()
     accountsListOp.addDependency(accessTokenOp)
+    accountsListOp.completion = { result in
+      if let result = try? result.get() {
+        dump(result)
+      }
+    }
     
     opQueue.underlyingQueue = DispatchQueue.global(qos: .utility)
     opQueue.addOperations([acquireCsrfTokenOp, cookiesOp, authCodeOp, accessTokenOp, accountsListOp], waitUntilFinished: false)

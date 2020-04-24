@@ -24,7 +24,8 @@ class CustomSessionDelegate: NSObject, URLSessionTaskDelegate {
     if request.url!.absoluteString.starts(with: "http://localhost/bar?code=") {
       guard let stringURL = request.url?.absoluteString,
         let code = cutCodeFrom(string: stringURL)  else { return }
-        self.delegate?.didReceive(code: AuthCode(token: code))
+      print("Retrieving code from http url.")
+      self.delegate?.didReceive(code: AuthCode(token: code))
       
       task.cancel()
       completionHandler(nil)

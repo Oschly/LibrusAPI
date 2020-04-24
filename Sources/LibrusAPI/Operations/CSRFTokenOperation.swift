@@ -41,6 +41,7 @@ final class CSRFTokenOperation: AsyncOperation {
     
     // Tokens' validation is done in @Storage wrapper's getter.
     guard token == nil else {
+      print("CSRF token already exists, waiting for http redirection...")
         semaphore.wait()
         return
     }
@@ -53,6 +54,7 @@ final class CSRFTokenOperation: AsyncOperation {
       if let error = error as? URLError {
         // TODO: - Handle errors
         if error.code == .cancelled {
+          print("Session has been cancelled by code, probably it's fine. Continuing.")
           self?.state = .finished
           return
         }
@@ -64,6 +66,7 @@ final class CSRFTokenOperation: AsyncOperation {
         let csrf = try? doc.head()?.child(4).attr("content") {
         
         guard let self = self else { return }
+        print("Retrieved csrf token, assigning for later use.")
         self.token = CSRFToken(token: csrf)
         self.state = .finished
       }
@@ -81,6 +84,7 @@ extension CSRFTokenOperation: AuthCodeProxy {
     DispatchQueue.main.async {
       self.authCode = code
       
+      print("Got http redirection, processing code.")
       self.state = .finished
       self.semaphore.signal()
     }
