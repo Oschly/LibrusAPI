@@ -10,12 +10,14 @@ import Foundation
 final class AccountsListOperation: AsyncOperation {
   // To be considered for further implementation
   var completion: ((Result<AccessList, Error>) -> ())?
+  var list: AccessList?
+  
+  @Storage<AccessToken?>(key: "accessToken", defaultValue: nil)
+  private(set) var accessToken: AccessToken?
   
   override func main() {
-    guard let accessToken = dependencies
-      .compactMap({ ($0 as? AccessTokenOperation)?.accessToken })
-      .first
-      else { preconditionFailure() }
+    state = .executing
+    guard let accessToken = accessToken else { preconditionFailure() }
     
     let url = URL(string: "https://portal.librus.pl/api/v2/SynergiaAccounts")!
     var request = URLRequest(url: url)
@@ -34,8 +36,16 @@ final class AccountsListOperation: AsyncOperation {
       if let data = data {
         let list = try! JSONDecoder.shared.decode(AccessList.self, from: data)
         self.completion?(.success(list))
+        self.list = list
+        self.state = .finished
+        dump(String(data: data, encoding: .utf8))
       }
     }
     .resume()
+  }
+  
+  override func start() {
+    main()
+    print("Finsiehd")
   }
 }

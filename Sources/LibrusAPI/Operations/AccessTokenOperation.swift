@@ -10,6 +10,7 @@ import Foundation
 /// Access token is last token we need to get all Synergia accounts.
 /// For further informations, go to `AccessToken` definition.
 final class AccessTokenOperation: AsyncOperation {
+  @Storage<AccessToken?>(key: "accessToken", defaultValue: nil)
   private(set) var accessToken: AccessToken?
   
   override func main() {
