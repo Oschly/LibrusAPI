@@ -41,18 +41,18 @@ class LibrusAuthenticator: NSObject {
     refreshToken.addDependency(accountsListOp)
     let newAccounts = AccountsListOperation()
     
-//      newAccounts.completion = { result in
+//    newAccounts.completion = { result in
 //      if let result = try? result.get() {
 //        let url = URL(string: "https://api.librus.pl/2.0/Grades")!
 //        var request = URLRequest(url: url)
 //        request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
 //        request.addValue("Bearer \(result.accounts[0].token)", forHTTPHeaderField: "Authorization")
-//        
+//
 //        URLSession.shared.dataTask(with: request) { data, response, error in
-//          print(String(data: data!, encoding: .utf8))
+//          dump(try! JSONDecoder.shared.decode(Grades.self, from: data!))
 //        }
-//      .resume()
-//        
+//        .resume()
+//
 //      }
 //    }
     

@@ -38,7 +38,6 @@ final class AccountsListOperation: AsyncOperation {
         self.completion?(.success(list))
         self.list = list
         self.state = .finished
-        dump(String(data: data, encoding: .utf8))
       }
     }
     .resume()

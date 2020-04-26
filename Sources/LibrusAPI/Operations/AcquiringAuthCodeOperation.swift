@@ -40,7 +40,6 @@ final class AcquriringAuthCodeOperation: AsyncOperation {
     
     state = .executing
     guard authCode != nil else {
-      dump(authCode)
       state = .finished
       return
     }
