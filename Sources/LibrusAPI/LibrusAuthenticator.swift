@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftSoup
 
 class LibrusAuthenticator: NSObject {
   private(set) var email: String?
@@ -49,7 +48,20 @@ class LibrusAuthenticator: NSObject {
 //        request.addValue("Bearer \(result.accounts[0].token)", forHTTPHeaderField: "Authorization")
 //
 //        URLSession.shared.dataTask(with: request) { data, response, error in
-//          dump(try! JSONDecoder.shared.decode(Grades.self, from: data!))
+//          let grades = try! JSONDecoder.shared.decode(Grades.self, from: data!)
+//          let grade = grades.grades[0]
+//
+//          var request = URLRequest(url: grade.teacher.url!)
+//          request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
+//          request.addValue("Bearer \(result.accounts[0].token)", forHTTPHeaderField: "Authorization")
+//
+//          URLSession.shared.dataTask(with: request) { data, response, error in
+//            DispatchQueue.main.async {
+//              print(String(data: data!, encoding: .utf8))
+//              dump(try! JSONDecoder.shared.decode(Teacher.self, from: data!))
+//            }
+//          }
+//          .resume()
 //        }
 //        .resume()
 //
