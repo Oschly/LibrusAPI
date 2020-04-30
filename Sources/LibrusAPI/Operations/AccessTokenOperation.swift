@@ -9,18 +9,21 @@ import Foundation
 
 /// Access token is last token we need to get all Synergia accounts.
 /// For further informations, go to `AccessToken` definition.
-final class AccessTokenOperation: AsyncOperation {
+final class AccessTokenOperation: AsyncOperation {  
   @Storage<AccessToken?>(key: "accessToken", defaultValue: nil)
   private(set) var accessToken: AccessToken?
   
+  @Storage<AuthCode?>(key: "authCode", defaultValue: nil)
+  var authCode: AuthCode?
+  
   override func main() {
     state = .executing
-    guard let authCode = dependencies
-      .compactMap({ ($0 as? AcquriringAuthCodeOperation)?.authCode })
-      .first
+    guard let authCode = authCode
       else {
+        print("AccessToken: AuthCode is not present, skipping (did you started that operation without chaining it to acquiring auth code operation?)")
         state = .finished
-        return }
+        return
+    }
     
     let url = URL(string: "https://portal.librus.pl/oauth2/access_token")!
     var request = URLRequest(url: url)
@@ -40,7 +43,7 @@ final class AccessTokenOperation: AsyncOperation {
       .dataTask(with: request) { [weak self] data, response, error in
         guard let self = self else { return }
         if let error = error {
-          print(error)
+          print("AccessToken: Failed to retrieve AccessToken, error: \(error)")
           return
         }
         
@@ -48,6 +51,7 @@ final class AccessTokenOperation: AsyncOperation {
         
         DispatchQueue.main.async {
           if let token = try? JSONDecoder.shared.decode(AccessToken.self, from: data) {
+            print("AccessToken: Acquired AccessToken, assigning it for later use.")
             self.accessToken = token
             self.state = .finished
             return

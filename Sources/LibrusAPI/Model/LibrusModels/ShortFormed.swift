@@ -8,9 +8,9 @@
 import Foundation
 
 protocol ShortFormed {
-  var id: Int { get }
+  var id: Int? { get }
   
-  var url: URL { get }
+  var url: URL? { get }
   
  // var fillInfoOp: Operation { get }
   init(from decoder: Decoder)

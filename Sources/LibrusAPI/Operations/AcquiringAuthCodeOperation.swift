@@ -32,14 +32,9 @@ final class AcquriringAuthCodeOperation: AsyncOperation {
   }
   
   override func main() {
-        guard dependencies
-      .compactMap({ ($0 as? UpdateCookiesOperation)?.alreadyHaveAuthCode })
-          .first == false else {
-        return
-    }
-    
     state = .executing
     guard authCode != nil else {
+      print("AuthCode: Already got authCode, skipping operation.")
       state = .finished
       return
     }

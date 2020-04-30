@@ -8,9 +8,9 @@
 import Foundation
 
 struct Category: Codable, ShortFormed {
-  let id: Int
+  let id: Int?
   
-  let url: URL
+  let url: URL?
   
   init(from decoder: Decoder) {
     guard let container = try? decoder

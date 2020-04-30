@@ -12,8 +12,12 @@ import Foundation
 final class UpdateCookiesOperation: AsyncOperation {
   let email: String
   let password: String
+    
+  @Storage<CSRFToken?>(key: "csrf", defaultValue: nil)
+  var token: CSRFToken?
   
-  private(set) var alreadyHaveAuthCode = false
+  @Storage<AuthCode?>(key: "authCode", defaultValue: nil)
+  var authCode: AuthCode?
   
   init(email: String, password: String) {
     self.email = email
@@ -23,19 +27,14 @@ final class UpdateCookiesOperation: AsyncOperation {
   
   override func main() {
     state = .executing
-    guard dependencies
-      .compactMap({ ($0 as? CSRFTokenOperation)?.authCode })
-      .first == nil else {
-      alreadyHaveAuthCode = true
-        print("Got already an auth code, skipping to getting access token.")
+    guard authCode == nil else {
+        print("Cookies: Got already an auth code, skipping to getting access token.")
         state = .finished
         return
     }
     
-    guard let csrfToken = dependencies
-      .compactMap({ ($0 as? CSRFTokenOperation)?.token })
-      .first
-      else {
+    guard let csrfToken = token else {
+        print("Cookies: Wasn't able to get token from previous operation")
         state = .finished
         return
     }
