@@ -8,12 +8,16 @@
 import Foundation
 
 extension JSONDecoder {
-  static let shared = JSONDecoder()
+  static let shared: JSONDecoder = {
+    let decoder = JSONDecoder()
+    return decoder
+  }()
 }
 
 extension JSONEncoder {
   static let shared: JSONEncoder = {
     var encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
     encoder.outputFormatting = .withoutEscapingSlashes
     return encoder
   }()

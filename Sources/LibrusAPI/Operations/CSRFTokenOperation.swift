@@ -83,11 +83,11 @@ final class CSRFTokenOperation: AsyncOperation {
 extension CSRFTokenOperation: AuthCodeProxy {
   func didReceive(code: AuthCode) {
     DispatchQueue.main.async {
-      self.authCode = code
-      
+      defer { self.semaphore.signal() }
+      guard self.state != .finished else { return }
       print("CSRF: Got http redirection, processing code.")
+      self.authCode = code
       self.state = .finished
-      self.semaphore.signal()
     }
   }
 }

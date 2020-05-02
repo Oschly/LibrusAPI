@@ -33,7 +33,7 @@ final class AcquriringAuthCodeOperation: AsyncOperation {
   
   override func main() {
     state = .executing
-    guard authCode != nil else {
+    guard authCode == nil else {
       print("AuthCode: Already got authCode, skipping operation.")
       state = .finished
       return

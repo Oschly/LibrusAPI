@@ -50,11 +50,13 @@ final class AccessTokenOperation: AsyncOperation {
         guard let data = data else { return }
         
         DispatchQueue.main.async {
-          if let token = try? JSONDecoder.shared.decode(AccessToken.self, from: data) {
+          if let token = try? JSONDecoder().decode(AccessToken.self, from: data) {
             print("AccessToken: Acquired AccessToken, assigning it for later use.")
             self.accessToken = token
             self.state = .finished
             return
+          } else {
+            preconditionFailure("Decoding AccessToken resulted in failure.")
           }
         }
     }
