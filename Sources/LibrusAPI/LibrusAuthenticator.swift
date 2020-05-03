@@ -39,6 +39,8 @@ class LibrusAuthenticator: NSObject {
   /// Mainly for debugging process, to be considered if needed
   /// in production state.
   private func verificationProcess() {
+    
+    // Playground
     do {
       try acquireAccountsList { result in
         if let result = try? result.get() {
@@ -50,11 +52,20 @@ class LibrusAuthenticator: NSObject {
           URLSession.shared.dataTask(with: request) { data, response, error in
             if let grades = try? JSONDecoder.shared.decode(Grades.self, from: data!) {
               let grade = grades.grades[0]
-              var teacher = grade.teacher
-              DispatchQueue.main.async {
-                teacher = teacher.fetchedInfo(token: result.accounts[1].token)
-                dump(teacher)
+              var category = grade.teacher
+              
+              let url = category.url!
+              request.url = url
+              
+              URLSession.shared.dataTask(with: request) { data, response, error in
+                dump(String(data: data!, encoding: .utf8))
+                let decoded = try! JSONDecoder.shared.decode(Response<Teacher>.self, from: data!)
+                DispatchQueue.global().async {
+                  dump(category.fetchedInfo(token: result.accounts[1].token))
+                }
               }
+              .resume()
+              
             } else {
               guard let errorContents = try? JSONDecoder.shared.decode(ErrorJSON.self, from: data!) else { preconditionFailure("I wasn't even able to decode error! Probably something horrible happened or Librus API has been updated.")}
               if errorContents.code == .tokenExpired {
@@ -76,21 +87,21 @@ class LibrusAuthenticator: NSObject {
       let password = password
       else { throw APIError.noCredentials }
     
-      let acquireCsrfTokenOp = CSRFTokenOperation()
-      let cookiesOp = UpdateCookiesOperation(email: email, password: password)
-      let authCodeOp = AcquriringAuthCodeOperation()
-      let accessTokenOp = AccessTokenOperation()
-      let accountsListOp = AccountsListOperation()
-      
-      cookiesOp.addDependency(acquireCsrfTokenOp)
-      authCodeOp.addDependency(cookiesOp)
-      accessTokenOp.addDependency(authCodeOp)
-      accountsListOp.addDependency(accessTokenOp)
-      
-      accountsListOp.completion = completion
-      loginCompletion = completion
-      
-      loginQueue.addOperations([acquireCsrfTokenOp, cookiesOp, authCodeOp, accessTokenOp, accountsListOp], waitUntilFinished: false)
+    let acquireCsrfTokenOp = CSRFTokenOperation()
+    let cookiesOp = UpdateCookiesOperation(email: email, password: password)
+    let authCodeOp = AcquriringAuthCodeOperation()
+    let accessTokenOp = AccessTokenOperation()
+    let accountsListOp = AccountsListOperation()
+    
+    cookiesOp.addDependency(acquireCsrfTokenOp)
+    authCodeOp.addDependency(cookiesOp)
+    accessTokenOp.addDependency(authCodeOp)
+    accountsListOp.addDependency(accessTokenOp)
+    
+    accountsListOp.completion = completion
+    loginCompletion = completion
+    
+    loginQueue.addOperations([acquireCsrfTokenOp, cookiesOp, authCodeOp, accessTokenOp, accountsListOp], waitUntilFinished: false)
   }
 }
 

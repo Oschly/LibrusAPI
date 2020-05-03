@@ -25,43 +25,30 @@ enum UserCodingKeys: String, CodingKey {
   case lastName = "LastName"
 }
 
-struct UserResponse: Codable {
-  let user: BaseUser
-  
-  init(from decoder: Decoder) throws {
-    guard let container = try? decoder.container(keyedBy: UserKey.self) else { preconditionFailure() }
-    self.user = try! container.decode(BaseUser.self, forKey: .info)
-  }
-}
-
-enum UserKey: String, CodingKey {
-  case info = "User"
-}
-
-struct BaseUser: Codable {
-  let id: Int
-  
-  let accountId: String
-  
-  let firstName: String
-  
-  let lastName: String
-  
-  init(from decoder: Decoder) {
-    guard let container = try? decoder
-      .container(keyedBy: UserCodingKeys.self)
-      else { preconditionFailure() }
-    
-    self.accountId = try! container.decode(String.self, forKey: .accountId)
-    self.firstName = try! container.decode(String.self, forKey: .firstName)
-    self.lastName = try! container.decode(String.self, forKey: .lastName)
-    self.id = try! container.decode(Int.self, forKey: .id)
-  }
-  
-  init(id: Int, accountId: String, firstName: String, lastName: String) {
-    self.id = id
-    self.accountId = accountId
-    self.firstName = firstName
-    self.lastName = lastName
-  }
-}
+//struct BaseUser: Codable {
+//  let id: Int
+//  
+//  let accountId: String
+//  
+//  let firstName: String
+//  
+//  let lastName: String
+//  
+//  init(from decoder: Decoder) {
+//    guard let container = try? decoder
+//      .container(keyedBy: UserCodingKeys.self)
+//      else { preconditionFailure() }
+//    
+//    self.accountId = try! container.decode(String.self, forKey: .accountId)
+//    self.firstName = try! container.decode(String.self, forKey: .firstName)
+//    self.lastName = try! container.decode(String.self, forKey: .lastName)
+//    self.id = try! container.decode(Int.self, forKey: .id)
+//  }
+//  
+//  init(id: Int, accountId: String, firstName: String, lastName: String) {
+//    self.id = id
+//    self.accountId = accountId
+//    self.firstName = firstName
+//    self.lastName = lastName
+//  }
+//}

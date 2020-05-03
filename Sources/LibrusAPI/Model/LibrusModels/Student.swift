@@ -20,4 +20,9 @@ struct Student: Codable, ShortFormed {
     self.id = try! container.decode(Int.self, forKey: .id)
     self.url = URL(string: try! container.decode(String.self, forKey: .url))!
   }
+  
+  func fetchedInfo(token: String) -> Student {
+    // TODO: Implement that
+    return self
+  }
 }

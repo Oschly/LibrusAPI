@@ -8,6 +8,11 @@
 import Foundation
 
 struct Teacher: ShortFormed, User {
+  private enum CodingKeys: String, CodingKey {
+    case accountId = "AccountId"
+    case firstName = "FirstName"
+    case lastName = "LastName"
+  }
   
   private(set) var accountId: String? = nil
   
@@ -31,6 +36,14 @@ struct Teacher: ShortFormed, User {
     if let stringUrl = try? shortFormedContainer.decode(String.self, forKey: .url) {
       self.url = URL(string: stringUrl)!
     }
+    
+    guard let localContainer = try? decoder
+      .container(keyedBy: CodingKeys.self)
+      else { preconditionFailure() }
+    
+    self.firstName = try? localContainer.decode(String.self, forKey: .firstName)
+    self.lastName = try? localContainer.decode(String.self, forKey: .lastName)
+    self.accountId = try? localContainer.decode(String.self, forKey: .accountId)
   }
   
   // Initialiser for `fetchedInfo(token:)` method.
@@ -45,41 +58,8 @@ struct Teacher: ShortFormed, User {
   /// Has to be executed on background thread, otherwise semaphore in method will freeze main thread.
   /// - Parameter token: Used to acquire Teacher's data
   /// - Returns: If method didn't failed to fetch data, it will return filled `Teacher` object.
-  func fetchedInfo(token: String) -> Teacher {
-    guard let url = url else { preconditionFailure() }
-    let semaphore = DispatchSemaphore(value: 0)
-    
-    var teacher = Teacher(accountId: nil, firstName: nil, lastName: nil, id: id, url: url)
-    
-    var request = URLRequest(url: url)
-    request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
-    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-    
-    URLSession.shared.dataTask(with: request) { data, response, error in
-      defer { semaphore.signal() }
-      
-      if let error = error {
-        print(error)
-      }
-      
-      if let data = data {
-        if let decodedResponse = try? JSONDecoder.shared.decode(UserResponse.self, from: data) {
-          let user = decodedResponse.user
-          teacher = Teacher(accountId: user.accountId,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
-                            id: user.id,
-                            url: url)
-          semaphore.signal()
-        } else {
-          print("Decoding teacher's info failed")
-          semaphore.signal()
-        }
-      }
-    }
-    .resume()
-    
-    semaphore.wait()
-    return teacher
-  }
+}
+
+extension Teacher: DecodableFromNestedJSON {
+  static var codingKey: ResponseKeys = .user
 }
