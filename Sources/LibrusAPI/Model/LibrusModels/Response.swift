@@ -22,5 +22,15 @@ struct Response<T: DecodableFromNestedJSON>: Codable {
 
 enum ResponseKeys: String, CodingKey {
   case user = "User"
+  
   case category = "Category"
+  
+  case color = "Color"
+  
+  case lesson = "Lesson"
+  
+  // "class" is a reserved keyword.
+  case classGroup = "Class"
+  
+  case classUnit = "ClassUnit"
 }

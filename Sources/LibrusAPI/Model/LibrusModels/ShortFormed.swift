@@ -18,6 +18,9 @@ protocol ShortFormed {
 }
 
 extension ShortFormed where Self: DecodableFromNestedJSON {
+  /// Has to be executed on background thread, otherwise semaphore in method will freeze main thread.
+  /// - Parameter token: Used to acquire object's data
+  /// - Returns: If method didn't failed to fetch data, it will return filled `ShortFormed` with rest of its objects.
   func fetchedInfo(token: String) -> Self {
     guard let url = url else { preconditionFailure() }
       let semaphore = DispatchSemaphore(value: 0)

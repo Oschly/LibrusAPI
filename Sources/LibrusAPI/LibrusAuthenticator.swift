@@ -52,17 +52,20 @@ class LibrusAuthenticator: NSObject {
           URLSession.shared.dataTask(with: request) { data, response, error in
             if let grades = try? JSONDecoder.shared.decode(Grades.self, from: data!) {
               let grade = grades.grades[0]
-              var category = grade.teacher
+              var category = grade.lesson
               
               let url = category.url!
               request.url = url
               
               URLSession.shared.dataTask(with: request) { data, response, error in
                 dump(String(data: data!, encoding: .utf8))
-                let decoded = try! JSONDecoder.shared.decode(Response<Teacher>.self, from: data!)
-                DispatchQueue.global().async {
-                  dump(category.fetchedInfo(token: result.accounts[1].token))
+                let decoded = try! JSONDecoder.shared.decode(Response<Lesson>.self, from: data!)
+                request.url = decoded.root.classRoom?.url
+                
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                  dump(try! JSONDecoder.shared.decode(Response<Class>.self, from: data!))
                 }
+              .resume()
               }
               .resume()
               

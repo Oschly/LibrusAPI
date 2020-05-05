@@ -29,9 +29,7 @@ struct Teacher: ShortFormed, User {
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
     
-    if let id = try? shortFormedContainer.decode(Int.self, forKey: .id) {
-      self.id = id
-    }
+    self.id = try? shortFormedContainer.decode(Int.self, forKey: .id)
     
     if let stringUrl = try? shortFormedContainer.decode(String.self, forKey: .url) {
       self.url = URL(string: stringUrl)!
@@ -54,10 +52,6 @@ struct Teacher: ShortFormed, User {
     self.id = id
     self.url = url
   }
-  
-  /// Has to be executed on background thread, otherwise semaphore in method will freeze main thread.
-  /// - Parameter token: Used to acquire Teacher's data
-  /// - Returns: If method didn't failed to fetch data, it will return filled `Teacher` object.
 }
 
 extension Teacher: DecodableFromNestedJSON {
