@@ -46,7 +46,6 @@ struct Grade: Codable {
   init(from decoder: Decoder) throws {
     guard let container = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
     do {
-      let dateFormatter = DateFormatter()
       self.id = try container.decode(Int.self, forKey: .id)
       self.lesson = try container.decode(Lesson.self, forKey: .lesson)
       self.subject = try container.decode(Subject.self, forKey: .subject)
@@ -57,13 +56,11 @@ struct Grade: Codable {
       self.semester = try container.decode(Semester.self, forKey: .semester)
       self.type = try GradeType(from: decoder)
       
-      dateFormatter.dateFormat = "yyyy-MM-dd"
       var dateString = try! container.decode(String.self, forKey: .date)
-      self.date = dateFormatter.date(from: dateString)!
+      self.date = DateFormatter.ISO8601WithoutTime.date(from: dateString)!
       
-      dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
       dateString = try! container.decode(String.self, forKey: .addDate)
-      self.addDate = dateFormatter.date(from: dateString)!
+      self.addDate = DateFormatter.ISO8601WithTime.date(from: dateString)!
       return
     } catch {
       // TODO: To be handled
