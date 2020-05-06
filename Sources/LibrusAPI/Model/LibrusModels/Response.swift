@@ -32,5 +32,7 @@ enum ResponseKeys: String, CodingKey {
   // "class" is a reserved keyword.
   case classGroup = "Class"
   
-  case classUnit = "ClassUnit"
+  case school = "Unit"
+  
+  case subject = "Subject"
 }

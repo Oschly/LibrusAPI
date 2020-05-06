@@ -28,7 +28,7 @@ struct Grade: Codable {
   
   let semester: Semester
   
-  let type: GradeType
+  let type: GradeType?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"
@@ -52,15 +52,16 @@ struct Grade: Codable {
       self.student = try container.decode(Student.self, forKey: .student)
       self.category = try container.decode(Category.self, forKey: .category)
       self.teacher = try container.decode(Teacher.self, forKey: .teacher)
-      self.grade = try container.decode(String.self, forKey: .grade)
       self.semester = try container.decode(Semester.self, forKey: .semester)
-      self.type = try GradeType(from: decoder)
+      self.grade = try container.decode(String.self, forKey: .grade)
       
       var dateString = try! container.decode(String.self, forKey: .date)
       self.date = DateFormatter.ISO8601WithoutTime.date(from: dateString)!
       
       dateString = try! container.decode(String.self, forKey: .addDate)
       self.addDate = DateFormatter.ISO8601WithTime.date(from: dateString)!
+      
+      self.type = try GradeType(from: decoder)
       return
     } catch {
       // TODO: To be handled
