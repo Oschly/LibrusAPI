@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct School: ShortFormed {
+public struct School: ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case name = "Name"
     case shortName = "ShortName"
@@ -28,7 +28,7 @@ struct School: ShortFormed {
   
   let lessonsRange: [LessonsRange]?
   
-  init(from decoder: Decoder) {
+  public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
@@ -53,5 +53,5 @@ struct School: ShortFormed {
 }
 
 extension School: DecodableFromNestedJSON {
-  static var codingKey: ResponseKeys = .school
+  public static var codingKey: ResponseKeys = .school
 }

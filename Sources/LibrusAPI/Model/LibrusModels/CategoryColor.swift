@@ -8,12 +8,12 @@
 import Foundation
 
 // TODO: - Implement ShortFormed
-struct CategoryColor: DecodableFromNestedJSON {
+public struct CategoryColor: DecodableFromNestedJSON {
   private enum CodingKeys: String, CodingKey {
     case rgb = "RGB"
   }
   
-  static var codingKey: ResponseKeys = .color
+  public static var codingKey: ResponseKeys = .color
   
   let id: Int?
   
@@ -21,7 +21,7 @@ struct CategoryColor: DecodableFromNestedJSON {
   
   let rgb: String?
     
-  init(from decoder: Decoder) {
+  public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }

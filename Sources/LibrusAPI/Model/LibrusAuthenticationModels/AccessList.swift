@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AccessList: Codable {
+public struct AccessList: Codable {
   struct SynergiaAccount: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
       case id
@@ -73,7 +73,7 @@ struct AccessList: Codable {
   
   
   
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     guard let container = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
     self.lastModified = try! container.decode(Int.self, forKey: .lastModified)
     self.accounts = try! container.decode([SynergiaAccount].self, forKey: .accounts)

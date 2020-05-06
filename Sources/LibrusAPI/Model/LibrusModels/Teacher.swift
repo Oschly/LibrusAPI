@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Teacher: ShortFormed, User {
+public struct Teacher: ShortFormed, User {
   private enum CodingKeys: String, CodingKey {
     case accountId = "AccountId"
     case firstName = "FirstName"
@@ -24,7 +24,7 @@ struct Teacher: ShortFormed, User {
   
   private(set) var url: URL?
   
-  init(from decoder: Decoder) {
+  public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
@@ -44,16 +44,16 @@ struct Teacher: ShortFormed, User {
     self.accountId = try? localContainer.decode(String.self, forKey: .accountId)
   }
   
-  // Initialiser for `fetchedInfo(token:)` method.
-  init(accountId: String?, firstName: String?, lastName: String?, id: Int?, url: URL?) {
-    self.accountId = accountId
-    self.firstName = firstName
-    self.lastName = lastName
-    self.id = id
-    self.url = url
-  }
+//  // Initialiser for `fetchedInfo(token:)` method.
+//  public init(accountId: String?, firstName: String?, lastName: String?, id: Int?, url: URL?) {
+//    self.accountId = accountId
+//    self.firstName = firstName
+//    self.lastName = lastName
+//    self.id = id
+//    self.url = url
+//  }
 }
 
 extension Teacher: DecodableFromNestedJSON {
-  static var codingKey: ResponseKeys = .user
+  public static var codingKey: ResponseKeys = .user
 }

@@ -14,6 +14,7 @@ extension JSONDecoder {
   }()
 }
 
+@available(iOS 13, *)
 extension JSONEncoder {
   static let shared: JSONEncoder = {
     var encoder = JSONEncoder()

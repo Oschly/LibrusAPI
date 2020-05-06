@@ -9,14 +9,14 @@ import Foundation
 
 protocol LibrusAPIError: Error {}
 
-enum APIError: LibrusAPIError {
+public enum APIError: LibrusAPIError {
   case errorGettingCSRF(info: URLError)
   case connectionError
   case noCredentials
   case other
 }
 
-enum ScrappingError: LibrusAPIError {
+public enum ScrappingError: LibrusAPIError {
   case errorConnection
   case errorDecodingData
   case errorGettingAttribute

@@ -12,7 +12,7 @@ protocol TokenRefresher {
   func refreshAccessToken(token: String, login: String)
 }
 
-class LibrusAuthenticator: NSObject {
+public class LibrusAuthenticator: NSObject {
   fileprivate let loginQueue: OperationQueue = {
     let queue = OperationQueue()
     
@@ -31,34 +31,13 @@ class LibrusAuthenticator: NSObject {
     super.init()
     self.email = email
     self.password = password
-    
-    verificationProcess()
   }
   
   /// Initial process of getting all Synergia's IDs.
   /// Mainly for debugging process, to be considered if needed
   /// in production state.
-  private func verificationProcess() {
-    
-    // Playground
-    do {
-      try acquireAccountsList { result in
-        if let result = try? result.get() {
-          let url = URL(string: "https://api.librus.pl/2.0/BehaviourGrades")!
-          var request = URLRequest(url: url)
-          request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
-          request.addValue("Bearer \(result.accounts[1].token)", forHTTPHeaderField: "Authorization")
-          
-          URLSession.shared.dataTask(with: request) { data, response, error in
-            dump(String(data: data!, encoding: .utf8))
-          }
-          .resume()
-        }
-      }
-    } catch {
-      print(error)
-    }
-    
+  private func startVerificationProcess(completion: @escaping (Result<AccessList, Error>) -> ()) throws {
+    try acquireAccountsList(completion: completion)
   }
   
   private func acquireAccountsList(completion: @escaping (Result<AccessList, Error>) -> ()) throws {

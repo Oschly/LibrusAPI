@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LessonsRange: Codable {
+public struct LessonsRange: Codable {
   private enum CodingKeys: String, CodingKey {
     case rawStart = "RawFrom"
     case rawEnd = "RawTo"
@@ -22,7 +22,7 @@ struct LessonsRange: Codable {
   let start: String
   let end: String
   
-  init(from decoder: Decoder) {
+  public init(from decoder: Decoder) {
     guard let container = try? decoder
       .container(keyedBy: CodingKeys.self)
       else { preconditionFailure() }

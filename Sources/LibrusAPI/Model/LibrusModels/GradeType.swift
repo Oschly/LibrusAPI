@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GradeType: String, Codable {
+public enum GradeType: String, Codable {
   case constituent
   
   case semester
@@ -29,7 +29,7 @@ enum GradeType: String, Codable {
     case gradeType = "gradeType"
   }
   
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     guard let container = try? decoder.container(keyedBy: CodingKeys.self)
       else { preconditionFailure() }
     
@@ -59,7 +59,7 @@ enum GradeType: String, Codable {
     }
   }
   
-  func encode(to encoder: Encoder) throws {
+  public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     do {
       try container.encode(rawValue, forKey: .gradeType)

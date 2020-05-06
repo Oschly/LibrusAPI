@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: ShortFormed {
+public struct Category: ShortFormed {
   enum CodingKeys: String, CodingKey {
     case color = "Color"
     case name = "Name"
@@ -36,7 +36,7 @@ struct Category: ShortFormed {
   
   let obligationToPerform: Bool?
   
-  init(from decoder: Decoder) {
+  public init(from decoder: Decoder) {
     guard let container = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
@@ -62,5 +62,5 @@ struct Category: ShortFormed {
 }
 
 extension Category: DecodableFromNestedJSON {
-  static var codingKey: ResponseKeys = .category
+  public static var codingKey: ResponseKeys = .category
 }

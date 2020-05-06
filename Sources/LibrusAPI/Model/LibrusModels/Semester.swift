@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum Semester: Int, Codable {
+public enum Semester: Int, Codable {
   case first = 1
   case second = 2
 }
 
 extension Semester: CustomStringConvertible {
-  var description: String {
+  public var description: String {
     switch self {
     case .first:
       return "first"

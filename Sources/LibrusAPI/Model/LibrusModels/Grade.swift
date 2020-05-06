@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Grade: Codable {
+public struct Grade: Codable {
   let id: Int
   
   let lesson: Lesson
@@ -43,7 +43,7 @@ struct Grade: Codable {
     case semester = "Semester"
   }
   
-  init(from decoder: Decoder) throws {
+  public init(from decoder: Decoder) throws {
     guard let container = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
     do {
       self.id = try container.decode(Int.self, forKey: .id)

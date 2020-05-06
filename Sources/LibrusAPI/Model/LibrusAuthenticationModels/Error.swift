@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ErrorJSON: Codable {
+public struct ErrorJSON: Codable {
   let status: JSONErrorStatus
   let message: String
   let code: ErrorCode

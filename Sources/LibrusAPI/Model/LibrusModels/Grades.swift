@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Grades: Codable {
+public struct Grades: Codable {
   let grades: [Grade]
   
   enum CodingKeys: String, CodingKey {

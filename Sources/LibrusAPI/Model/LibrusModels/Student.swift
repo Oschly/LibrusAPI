@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Student: Codable, ShortFormed {
+public struct Student: Codable, ShortFormed {
   let id: Int?
   
   let url: URL?
   
-  init(from decoder: Decoder) {
+ public init(from decoder: Decoder) {
     guard let container = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
