@@ -33,7 +33,7 @@ struct Class: ShortFormed {
   
   let endSchoolYear: Date?
   
-  let classUnit: ClassUnit?
+  let classUnit: School?
   
   let tutors: [Teacher]?
   
@@ -56,7 +56,7 @@ struct Class: ShortFormed {
     
     self.number = try? baseContainer.decode(Int.self, forKey: .number)
     self.symbol = try? baseContainer.decode(String.self, forKey: .symbol)
-    self.classUnit = try? baseContainer.decode(ClassUnit.self, forKey: .classUnit)
+    self.classUnit = try? baseContainer.decode(School.self, forKey: .classUnit)
     self.tutors = try? baseContainer.decode([Teacher].self, forKey: .tutors)
     
     if let beginSchoolYearString = try? baseContainer.decode(String.self, forKey: .beginSchoolYear) {
