@@ -8,21 +8,45 @@
 import Foundation
 
 struct Subject: Codable, ShortFormed {
+  private enum CodingKeys: String, CodingKey {
+    case name = "Name"
+    case isExtracurricular = "IsExtraCurricular"
+    case isBlockLesson = "IsBlockLesson"
+  }
+  
   let id: Int?
   
   let url: URL?
   
+  let name: String?
+  
+  let isExtracurricular: Bool?
+  
+  let isBlockLesson: Bool?
+  
   init(from decoder: Decoder) {
-    guard let container = try? decoder
+    guard let shortFormed = try? decoder
       .container(keyedBy: ShortFormedCodingKeys.self)
       else { preconditionFailure() }
     
-    self.id = try! container.decode(Int.self, forKey: .id)
-    self.url = URL(string: try! container.decode(String.self, forKey: .url))!
+    self.id = try? shortFormed.decode(Int.self, forKey: .id)
+    
+    if let urlString = try? shortFormed.decode(String.self, forKey: .url) {
+      self.url = URL(string: urlString)!
+    } else {
+      self.url = nil
+    }
+    
+    guard let baseContainer = try? decoder
+      .container(keyedBy: CodingKeys.self)
+      else { preconditionFailure() }
+    
+    self.name = try? baseContainer.decode(String.self, forKey: .name)
+    self.isExtracurricular = try? baseContainer.decode(Bool.self, forKey: .isExtracurricular)
+    self.isBlockLesson = try? baseContainer.decode(Bool.self, forKey: .isBlockLesson)
   }
-  
-  func fetchedInfo(token: String) -> Subject {
-    // TODO: Implement that
-    return self
-  }
+}
+
+extension Subject: DecodableFromNestedJSON {
+  static var codingKey: ResponseKeys = .subject
 }
