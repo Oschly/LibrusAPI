@@ -12,6 +12,7 @@ protocol TokenRefresher {
   func refreshAccessToken(token: String, login: String)
 }
 
+@available(iOS 13, *)
 public class LibrusAuthenticator: NSObject {
   fileprivate let loginQueue: OperationQueue = {
     let queue = OperationQueue()
@@ -68,6 +69,7 @@ public class LibrusAuthenticator: NSObject {
   }
 }
 
+@available(iOS 13, *)
 extension LibrusAuthenticator: TokenRefresher {
   func refreshAccessToken(token: String, login: String) {
     let refreshOp = RefreshTokenOperation(token: token, login: login)
