@@ -9,6 +9,7 @@ import Foundation
 
 /// Cookies are needed to successfully get AuthCode, it isn't required to call that every time before getting AuthCode,
 /// but frequency of minimum calls is not known as well.
+@available(iOS 13, *)
 final class UpdateCookiesOperation: AsyncOperation {
   let email: String
   let password: String
