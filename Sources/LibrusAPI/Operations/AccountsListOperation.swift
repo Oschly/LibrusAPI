@@ -38,6 +38,7 @@ final class AccountsListOperation: AsyncOperation {
         print("Successfully acquired AccessList, saving it for later use.")
         self.completion?(.success(list))
         self.list = list
+        self.completion = nil
         self.state = .finished
       }
     }

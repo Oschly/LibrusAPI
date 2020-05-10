@@ -28,20 +28,13 @@ public class LibrusAuthenticator: NSObject {
   
   private var loginCompletion: ((Result<AccessList, Error>) -> ())? = nil
   
-  init(email: String, password: String) {
+  public init(email: String, password: String) {
     super.init()
     self.email = email
     self.password = password
   }
   
-  /// Initial process of getting all Synergia's IDs.
-  /// Mainly for debugging process, to be considered if needed
-  /// in production state.
-  private func startVerificationProcess(completion: @escaping (Result<AccessList, Error>) -> ()) throws {
-    try acquireAccountsList(completion: completion)
-  }
-  
-  private func acquireAccountsList(completion: @escaping (Result<AccessList, Error>) -> ()) throws {
+  public func getAccountsList(completion: @escaping (Result<AccessList, Error>) -> ()) throws {
     guard let email = email,
       let password = password
       else { throw APIError.noCredentials }
@@ -71,7 +64,7 @@ public class LibrusAuthenticator: NSObject {
 
 @available(iOS 13, *)
 extension LibrusAuthenticator: TokenRefresher {
-  func refreshAccessToken(token: String, login: String) {
+  public func refreshAccessToken(token: String, login: String) {
     let refreshOp = RefreshTokenOperation(token: token, login: login)
     let accountsListOp = AccountsListOperation()
     
