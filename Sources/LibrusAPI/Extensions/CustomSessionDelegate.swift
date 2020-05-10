@@ -21,6 +21,7 @@ class CustomSessionDelegate: NSObject, URLSessionTaskDelegate {
                   willPerformHTTPRedirection response: HTTPURLResponse,
                   newRequest request: URLRequest,
                   completionHandler: @escaping (URLRequest?) -> Void) {
+    print("urlSessionDelegateDidCatchRedirection")
     if request.url!.absoluteString.starts(with: "http://localhost/bar?code=") {
       guard let stringURL = request.url?.absoluteString,
         let code = cutCodeFrom(string: stringURL)  else { return }
