@@ -31,7 +31,6 @@ final class CSRFTokenOperation: AsyncOperation {
   }
   
   override func main() {
-    authCode = nil
     state = .executing
     
     guard authCode == nil else {
@@ -42,8 +41,7 @@ final class CSRFTokenOperation: AsyncOperation {
     
     // Tokens' validation is done in @Storage wrapper's getter.
     guard token == nil else {
-      print("CSRF: token already exists, waiting for http redirection...")
-        semaphore.wait()
+      print("CSRF: token already exists, skipping...")
         return
     }
     
@@ -82,7 +80,7 @@ final class CSRFTokenOperation: AsyncOperation {
 
 extension CSRFTokenOperation: AuthCodeProxy {
   func didReceive(code: AuthCode) {
-    DispatchQueue.global(qos: .utility).async {
+    DispatchQueue.main.async {
       defer { self.semaphore.signal() }
       guard self.state != .finished else { return }
       print("CSRF: Got http redirection, processing code.")

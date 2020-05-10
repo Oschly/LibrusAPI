@@ -21,7 +21,6 @@ class CustomSessionDelegate: NSObject, URLSessionTaskDelegate {
                   willPerformHTTPRedirection response: HTTPURLResponse,
                   newRequest request: URLRequest,
                   completionHandler: @escaping (URLRequest?) -> Void) {
-    DispatchQueue.global(qos: .utility).async {
       if request.url!.absoluteString.starts(with: "http://localhost/bar?code=") {
         guard let stringURL = request.url?.absoluteString,
           let code = self.cutCodeFrom(string: stringURL)  else { return }
@@ -33,7 +32,6 @@ class CustomSessionDelegate: NSObject, URLSessionTaskDelegate {
         return
       }
       completionHandler(request)
-    }
   }
   
   private func cutCodeFrom(string: String) -> String? {
