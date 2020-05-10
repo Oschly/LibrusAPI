@@ -21,18 +21,19 @@ class CustomSessionDelegate: NSObject, URLSessionTaskDelegate {
                   willPerformHTTPRedirection response: HTTPURLResponse,
                   newRequest request: URLRequest,
                   completionHandler: @escaping (URLRequest?) -> Void) {
-    print("urlSessionDelegateDidCatchRedirection")
-    if request.url!.absoluteString.starts(with: "http://localhost/bar?code=") {
-      guard let stringURL = request.url?.absoluteString,
-        let code = cutCodeFrom(string: stringURL)  else { return }
-      print("Retrieving code from http url.")
-      self.delegate?.didReceive(code: AuthCode(token: code))
-      
-      task.cancel()
-      completionHandler(nil)
-      return
+    DispatchQueue.global(qos: .utility).async {
+      if request.url!.absoluteString.starts(with: "http://localhost/bar?code=") {
+        guard let stringURL = request.url?.absoluteString,
+          let code = self.cutCodeFrom(string: stringURL)  else { return }
+        print("Retrieving code from http url.")
+        self.delegate?.didReceive(code: AuthCode(token: code))
+        
+        task.cancel()
+        completionHandler(nil)
+        return
+      }
+      completionHandler(request)
     }
-    completionHandler(request)
   }
   
   private func cutCodeFrom(string: String) -> String? {
