@@ -17,5 +17,5 @@ protocol RefreshableToken: Codable {
 
 struct Token: RefreshableToken {
   let token: String
-  let expiration = Date().addingTimeInterval(3600)
+  let expiration = Date().addingTimeInterval(360)
 }

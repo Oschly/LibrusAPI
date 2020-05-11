@@ -38,7 +38,7 @@ final class AcquriringAuthCodeOperation: AsyncOperation {
       state = .finished
       return
     }
-    let url = URL(string: "https://portal.librus.pl/ouath2/authorize?client_id=wmSyUMo8llDAs4y9tJVYY92oyZ6h4lAt7KCuy0Gv&redirect_uri=http://localhost/bar&response_type=code")!
+    let url = URL(string: "https://portal.librus.pl/oauth2/authorize?client_id=6XPsKf10LPz1nxgHQLcvZ1KM48DYzlBAhxipaXY8&redirect_uri=http://localhost/bar&response_type=code")!
     
     var request = URLRequest(url: url)
     request.addValue("LibrusMobileApp", forHTTPHeaderField: "User-Agent")
@@ -48,7 +48,6 @@ final class AcquriringAuthCodeOperation: AsyncOperation {
         print(error.localizedDescription)
         return
       }
-      self.semaphore.wait()
     }
     .resume()
   }

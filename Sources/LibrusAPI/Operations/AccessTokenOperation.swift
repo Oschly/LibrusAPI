@@ -54,6 +54,10 @@ final class AccessTokenOperation: AsyncOperation {
             print("AccessToken: Acquired AccessToken, assigning it for later use.")
             self.accessToken = token
             self.state = .finished
+            
+            // Somehow after single request, authCode is getting revoked. To avoid issues,
+            // just remove value after its first use.
+            UserDefaults.standard.removeObject(forKey: "authCode")
             return
           } else {
             preconditionFailure("Decoding AccessToken resulted in failure.")

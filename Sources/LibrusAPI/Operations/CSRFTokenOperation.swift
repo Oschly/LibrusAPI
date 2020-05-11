@@ -42,6 +42,7 @@ final class CSRFTokenOperation: AsyncOperation {
     // Tokens' validation is done in @Storage wrapper's getter.
     guard token == nil else {
       print("CSRF: token already exists, skipping...")
+      self.state = .finished
         return
     }
     

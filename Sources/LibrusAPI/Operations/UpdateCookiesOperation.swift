@@ -41,7 +41,14 @@ final class UpdateCookiesOperation: AsyncOperation {
     }
     
       guard let request = try? createRequest(token: csrfToken) else { preconditionFailure() }
-      URLSession.shared.dataTask(with: request).resume()
+    URLSession.shared.dataTask(with: request) { _, _, error in
+      if let error = error {
+        print(error)
+        preconditionFailure()
+      } else {
+        self.state = .finished
+      }
+    }.resume()
   }
   
   private func createRequest(token: CSRFToken) throws -> URLRequest {
