@@ -14,15 +14,15 @@ public struct Teacher: ShortFormed, User {
     case lastName = "LastName"
   }
   
-  private(set) var accountId: String? = nil
+  private(set) public var accountId: String? = nil
   
-  private(set) var firstName: String? = nil
+  private(set) public var firstName: String? = nil
   
-  private(set) var lastName: String? = nil
+  private(set) public var lastName: String? = nil
   
-  private(set) var id: Int?
+  private(set) public var id: Int?
   
-  private(set) var url: URL?
+  private(set) public var url: URL?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
@@ -43,15 +43,6 @@ public struct Teacher: ShortFormed, User {
     self.lastName = try? localContainer.decode(String.self, forKey: .lastName)
     self.accountId = try? localContainer.decode(String.self, forKey: .accountId)
   }
-  
-//  // Initialiser for `fetchedInfo(token:)` method.
-//  public init(accountId: String?, firstName: String?, lastName: String?, id: Int?, url: URL?) {
-//    self.accountId = accountId
-//    self.firstName = firstName
-//    self.lastName = lastName
-//    self.id = id
-//    self.url = url
-//  }
 }
 
 extension Teacher: DecodableFromNestedJSON {

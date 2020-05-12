@@ -8,7 +8,7 @@
 import Foundation
 
 public struct AccessList: Codable {
-  struct SynergiaAccount: Codable, Hashable {
+  public struct SynergiaAccount: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
       case id
       case group
@@ -19,23 +19,23 @@ public struct AccessList: Codable {
       case state
     }
     
-    enum AccountGroup: String {
+    public enum AccountGroup: String {
       case student, parent
     }
     
-    enum AccountState: String {
+    public enum AccountState: String {
       case active
     }
     
-    let id: Int
-    let group: AccountGroup
-    let token: String
-    let login: String
-    let name: String
-    let scopes: String
-    let state: AccountState
+    public let id: Int
+    public let group: AccountGroup
+    public let token: String
+    public let login: String
+    public let name: String
+    public let scopes: String
+    public let state: AccountState
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
       guard let container = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
       let groupRaw = try! container.decode(String.self, forKey: .group)
       self.group = AccountGroup(rawValue: groupRaw)!
@@ -50,7 +50,7 @@ public struct AccessList: Codable {
       self.state = AccountState(rawValue: stateRaw)!
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       
       try! container.encode(id, forKey: .id)
@@ -68,8 +68,8 @@ public struct AccessList: Codable {
     case accounts
   }
   
-  let lastModified: Int
-  let accounts: [SynergiaAccount]
+  public let lastModified: Int
+  public let accounts: [SynergiaAccount]
   
   
   

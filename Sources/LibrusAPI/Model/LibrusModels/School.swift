@@ -16,17 +16,17 @@ public struct School: ShortFormed {
     case lessonsRange = "LessonsRange"
   }
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let name: String?
+  public let name: String?
   
-  let shortName: String?
+  public let shortName: String?
   
-  let type: String?
+  public let type: String?
   
-  let lessonsRange: [LessonsRange]?
+  public let lessonsRange: [LessonsRange]?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder

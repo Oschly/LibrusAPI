@@ -8,27 +8,27 @@
 import Foundation
 
 public struct Grade: Codable {
-  let id: Int
+  public let id: Int
   
-  let lesson: Lesson
+  public let lesson: Lesson
   
-  let subject: Subject
+  public let subject: Subject
   
-  let student: Student
+  public let student: Student
   
-  let category: Category
+  public let category: Category
   
-  let teacher: Teacher
+  public let teacher: Teacher
   
-  let grade: String
+  public let grade: String
   
-  let date: Date
+  public let date: Date
   
-  let addDate: Date
+  public let addDate: Date
   
-  let semester: Semester
+  public let semester: Semester
   
-  let type: GradeType?
+  public let type: GradeType?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"

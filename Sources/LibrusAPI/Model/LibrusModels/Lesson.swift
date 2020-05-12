@@ -14,15 +14,15 @@ public struct Lesson: ShortFormed {
     case classRoom = "Class"
   }
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let teacher: Teacher?
+  public let teacher: Teacher?
   
-  let subject: Subject?
+  public let subject: Subject?
   
-  let classRoom: Class?
+  public let classRoom: Class?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder

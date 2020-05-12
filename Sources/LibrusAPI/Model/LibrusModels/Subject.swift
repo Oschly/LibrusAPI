@@ -14,15 +14,15 @@ public struct Subject: Codable, ShortFormed {
     case isBlockLesson = "IsBlockLesson"
   }
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let name: String?
+  public let name: String?
   
-  let isExtracurricular: Bool?
+  public let isExtracurricular: Bool?
   
-  let isBlockLesson: Bool?
+  public let isBlockLesson: Bool?
   
   public init(from decoder: Decoder) {
     guard let shortFormed = try? decoder

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// TODO: - Implement ShortFormed
 public struct CategoryColor: DecodableFromNestedJSON {
   private enum CodingKeys: String, CodingKey {
     case rgb = "RGB"
@@ -15,11 +14,11 @@ public struct CategoryColor: DecodableFromNestedJSON {
   
   public static var codingKey: ResponseKeys = .color
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let rgb: String?
+  public let rgb: String?
     
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder

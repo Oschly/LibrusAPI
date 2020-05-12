@@ -19,23 +19,23 @@ public struct Class: ShortFormed {
     case tutors = "ClassTutors"
   }
   
-  var id: Int?
+  private(set) public var id: Int?
   
-  var url: URL?
+  private(set) public var url: URL?
   
-  let number: Int?
+  public let number: Int?
   
-  let symbol: String?
+  public let symbol: String?
   
-  let beginSchoolYear: Date?
+  public let beginSchoolYear: Date?
   
-  let endFirstSemester: Date?
+  public let endFirstSemester: Date?
   
-  let endSchoolYear: Date?
+  public let endSchoolYear: Date?
   
-  let classUnit: School?
+  public let classUnit: School?
   
-  let tutors: [Teacher]?
+  public let tutors: [Teacher]?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder

@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Grades: Codable {
-  let grades: [Grade]
+  public let grades: [Grade]
   
   enum CodingKeys: String, CodingKey {
     case grades = "Grades"

@@ -7,10 +7,12 @@
 
 import Foundation
 
-public struct Student: Codable, ShortFormed {
-  let id: Int?
+public struct Student: DecodableFromNestedJSON, ShortFormed {
+  public static var codingKey: ResponseKeys = .user
   
-  let url: URL?
+  public let id: Int?
+  
+  public let url: URL?
   
  public init(from decoder: Decoder) {
     guard let container = try? decoder
@@ -19,10 +21,5 @@ public struct Student: Codable, ShortFormed {
     
     self.id = try! container.decode(Int.self, forKey: .id)
     self.url = URL(string: try! container.decode(String.self, forKey: .url))!
-  }
-  
-  func fetchedInfo(token: String) -> Student {
-    // TODO: Implement that
-    return self
   }
 }

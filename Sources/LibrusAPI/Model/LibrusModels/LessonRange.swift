@@ -14,13 +14,13 @@ public struct LessonsRange: Codable {
   }
   
   /// Defined as minutes from midnight
-  let rawStart: Int
+  public let rawStart: Int
   
   /// Defined as minutes from midnight
-  let rawEnd: Int
+  public let rawEnd: Int
   
-  let start: String
-  let end: String
+  public let start: String
+  public let end: String
   
   public init(from decoder: Decoder) {
     guard let container = try? decoder

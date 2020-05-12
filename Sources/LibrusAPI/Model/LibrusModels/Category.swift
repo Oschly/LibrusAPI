@@ -18,23 +18,23 @@ public struct Category: ShortFormed {
     case obligationToPerform = "ObligationToPerform"
   }
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let color: CategoryColor?
+  public let color: CategoryColor?
   
-  let name: String?
+  public let name: String?
   
-  let adultsExtramural: Bool?
+  public let adultsExtramural: Bool?
   
-  let adultsDaily: Bool?
+  public let adultsDaily: Bool?
   
-  let standard: Bool?
+  public let standard: Bool?
   
-  let blockAnyGrades: Bool?
+  public let blockAnyGrades: Bool?
   
-  let obligationToPerform: Bool?
+  public let obligationToPerform: Bool?
   
   public init(from decoder: Decoder) {
     guard let container = try? decoder
