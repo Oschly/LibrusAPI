@@ -60,6 +60,42 @@ public class LibrusAuthenticator: NSObject {
                               accountsListOp],
                              waitUntilFinished: false)
   }
+  
+  // TODO: Fix that
+  public func getHomework(token: String, completion: @escaping (Result<[Homework], Error>) -> ()) {
+    let url = URL(string: "https://api.librus.pl/2.0/HomeWorkAssignments")!
+    
+    var request = URLRequest(url: url)
+    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+      dump(String(data: data!, encoding: .utf8))
+    }
+    .resume()
+  }
+  
+  public func getEvents(token: String, completion: @escaping ((Result<[Event], Error>) -> ())) {
+    let url = URL(string: "https://api.librus.pl/2.0/HomeWorks")!
+    
+    var request = URLRequest(url: url)
+    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+      if let error = error {
+        completion(.failure(error))
+      }
+      
+      guard let data = data else { preconditionFailure() }
+      
+      do {
+        let decoded = try JSONDecoder.shared.decode(Response<[Event]>.self, from: data)
+        completion(.success(decoded.root))
+      } catch {
+        print(error)
+      }
+    }
+    .resume()
+  }
 }
 
 @available(iOS 13, *)
@@ -73,4 +109,11 @@ extension LibrusAuthenticator: TokenRefresher {
     loginQueue.addOperations([refreshOp, accountsListOp],
                              waitUntilFinished: false)
   }
+}
+extension Array: DecodableFromNestedJSON where Element == Event {
+  public static var codingKey: ResponseKeys = .events
+}
+
+public struct Homework {
+  // TODO: Implement it.
 }

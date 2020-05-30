@@ -12,7 +12,7 @@ protocol ShortFormed {
   
   var url: URL? { get }
   
-  init(from decoder: Decoder)
+  init(from decoder: Decoder) throws
   
   func fetchedInfo(token: String) -> Self
 }
@@ -44,6 +44,7 @@ extension ShortFormed where Self: DecodableFromNestedJSON {
             semaphore.signal()
           } else {
             print("Decoding \(String(describing: category.id)) info failed")
+            dump(String(data: data, encoding: .utf8))
             semaphore.signal()
           }
         }

@@ -35,4 +35,6 @@ public enum ResponseKeys: String, CodingKey {
   case school = "Unit"
   
   case subject = "Subject"
+  
+  case events = "HomeWorks"
 }

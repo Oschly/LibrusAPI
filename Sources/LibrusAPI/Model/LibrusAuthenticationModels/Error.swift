@@ -26,4 +26,5 @@ enum JSONErrorStatus: String, Codable {
 
 enum ErrorCode: String, Codable {
   case tokenExpired = "TokenIsExpired"
+  case accessDenied = "AccessDeny"
 }
