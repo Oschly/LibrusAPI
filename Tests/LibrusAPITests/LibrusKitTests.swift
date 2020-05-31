@@ -1,12 +1,12 @@
 import XCTest
-@testable import LibrusAPI
+@testable import LibrusKit
 
-final class LibrusAPITests: XCTestCase {
+final class LibrusKitTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(LibrusAPI().text, "Hello, World!")
+        XCTAssertEqual(LibrusKit().text, "Hello, World!")
     }
 
     static var allTests = [

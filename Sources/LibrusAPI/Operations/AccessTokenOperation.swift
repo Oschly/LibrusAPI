@@ -1,6 +1,6 @@
 //
 //  AccessTokenOperation.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 23/04/2020.
 //

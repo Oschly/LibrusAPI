@@ -1,6 +1,6 @@
 //
 //  CSRFTokenOperation.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 22/04/2020.
 //

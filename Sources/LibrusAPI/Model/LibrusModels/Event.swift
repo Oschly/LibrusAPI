@@ -1,6 +1,6 @@
 //
 //  Event.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 30/05/2020.
 //

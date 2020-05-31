@@ -4,21 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "LibrusAPI",
+    name: "LibrusKit",
     products: [
         .library(
-            name: "LibrusAPI",
-            targets: ["LibrusAPI"]),
+            name: "LibrusKit",
+            targets: ["LibrusKit"]),
     ],
     dependencies: [
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "1.7.4"),
     ],
     targets: [
         .target(
-            name: "LibrusAPI",
+            name: "LibrusKit",
             dependencies: ["SwiftSoup"]),
         .testTarget(
-            name: "LibrusAPITests",
-            dependencies: ["LibrusAPI"]),
+            name: "LibrusKitTests",
+            dependencies: ["LibrusKit"]),
     ]
 )

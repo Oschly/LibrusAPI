@@ -1,6 +1,6 @@
 //
 //  URL+FormURLEncoded.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 16/04/2020.
 //

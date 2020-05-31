@@ -1,6 +1,6 @@
 //
 //  AccessList.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 20/04/2020.
 //

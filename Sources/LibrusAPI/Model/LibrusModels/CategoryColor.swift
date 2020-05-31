@@ -1,6 +1,6 @@
 //
 //  CategoryColor.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 03/05/2020.
 //

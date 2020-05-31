@@ -1,6 +1,6 @@
 //
 //  Int+FormatToHour.swift
-//  LibrusAPI
+//  LibrusKit
 //
 //  Created by Oskar on 06/05/2020.
 //
