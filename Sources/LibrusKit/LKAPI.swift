@@ -8,6 +8,8 @@
 import Foundation
 
 public final class LKAPI {
+  static let instance = LKAPI()
+  
   // TODO: Fix that
   public func getHomework(token: String, completion: @escaping (Result<[Homework], Error>) -> ()) {
     let url = URL(string: "https://api.librus.pl/2.0/HomeWorkAssignments")!

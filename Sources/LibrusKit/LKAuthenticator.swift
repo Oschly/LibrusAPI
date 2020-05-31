@@ -13,6 +13,8 @@ protocol TokenRefresher {
 }
 
 public class LKAuthenticator {
+  static let instance = LKAuthenticator()
+  
   fileprivate let loginQueue: OperationQueue = {
     let queue = OperationQueue()
     
