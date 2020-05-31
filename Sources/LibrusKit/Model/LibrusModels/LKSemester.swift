@@ -1,5 +1,5 @@
 //
-//  Semester.swift
+//  LKSemester.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-public enum Semester: Int, Codable {
+public enum LKSemester: Int, Codable {
   case first = 1
   case second = 2
 }
 
-extension Semester: CustomStringConvertible {
+extension LKSemester: CustomStringConvertible {
   public var description: String {
     switch self {
     case .first:

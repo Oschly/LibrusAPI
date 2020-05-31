@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct OnlineLesson: Codable {
+public struct LKOnlineLesson: Codable {
   private enum CodingKeys: String, CodingKey {
     case url
     case text = "text"

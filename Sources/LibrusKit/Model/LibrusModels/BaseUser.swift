@@ -1,14 +1,14 @@
 //
 //  User.swift
-//  ddd
+//  LibrusKit
 //
 //  Created by Oskar on 27/04/2020.
-//  Copyright © 2020 Oschly. All rights reserved.
+//  Copyright © 2020 Oskar Chybowski. All rights reserved.
 //
 
 import Foundation
 
-public protocol User: Codable {
+protocol User: Codable {
   var id: Int? { get }
   
   var accountId: String? { get }

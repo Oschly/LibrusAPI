@@ -1,5 +1,5 @@
 //
-//  CategoryColor.swift
+//  LKCategoryColor.swift
 //  LibrusKit
 //
 //  Created by Oskar on 03/05/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CategoryColor: DecodableFromNestedJSON {
+public struct LKCategoryColor: DecodableFromNestedJSON {
   private enum CodingKeys: String, CodingKey {
     case rgb = "RGB"
   }

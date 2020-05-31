@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AccessList: Codable {
+public struct LKAccountsList: Codable {
   public struct SynergiaAccount: Codable, Hashable {
     enum CodingKeys: String, CodingKey {
       case id

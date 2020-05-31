@@ -1,5 +1,5 @@
 //
-//  LessonRange.swift
+//  LKLessonTimeRange.swift
 //  LibrusKit
 //
 //  Created by Oskar on 06/05/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LessonsRange: Codable {
+public struct LKLessonTimeRange: Codable {
   private enum CodingKeys: String, CodingKey {
     case rawStart = "RawFrom"
     case rawEnd = "RawTo"

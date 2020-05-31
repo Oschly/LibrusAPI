@@ -10,8 +10,8 @@ import Foundation
 final class AccountsListOperation: AsyncOperation {
   
   // To be considered for further implementation
-  var completion: ((Result<AccessList, Error>) -> ())?
-  var list: AccessList?
+  var completion: ((Result<LKAccountsList, Error>) -> ())?
+  var list: LKAccountsList?
   
   @Storage<AccessToken?>(key: "accessToken", defaultValue: nil)
   private(set) var accessToken: AccessToken?
@@ -34,7 +34,7 @@ final class AccountsListOperation: AsyncOperation {
       }
       
       if let data = data,
-        let list = try? JSONDecoder.shared.decode(AccessList.self, from: data) {
+        let list = try? JSONDecoder.shared.decode(LKAccountsList.self, from: data) {
         print("Successfully acquired AccessList, saving it for later use.")
         self.completion?(.success(list))
         self.list = list

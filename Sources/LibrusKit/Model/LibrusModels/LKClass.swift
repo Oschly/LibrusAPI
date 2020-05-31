@@ -1,6 +1,6 @@
 //
-//  ClassRoom.swift
-//  ddd
+//  LKClass.swift
+//  LibrusKit
 //
 //  Created by Oskar on 05/05/2020.
 //  Copyright © 2020 Oschly. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Class: ShortFormed {
+public struct LKClass: ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case number = "Number"
     case symbol = "Symbol"
@@ -33,9 +33,9 @@ public struct Class: ShortFormed {
   
   public let endSchoolYear: Date?
   
-  public let classUnit: School?
+  public let classUnit: LKSchool?
   
-  public let tutors: [Teacher]?
+  public let tutors: [LKTeacher]?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
@@ -56,8 +56,8 @@ public struct Class: ShortFormed {
     
     self.number = try? baseContainer.decode(Int.self, forKey: .number)
     self.symbol = try? baseContainer.decode(String.self, forKey: .symbol)
-    self.classUnit = try? baseContainer.decode(School.self, forKey: .classUnit)
-    self.tutors = try? baseContainer.decode([Teacher].self, forKey: .tutors)
+    self.classUnit = try? baseContainer.decode(LKSchool.self, forKey: .classUnit)
+    self.tutors = try? baseContainer.decode([LKTeacher].self, forKey: .tutors)
     
     if let beginSchoolYearString = try? baseContainer.decode(String.self, forKey: .beginSchoolYear) {
       self.beginSchoolYear = DateFormatter.ISO8601WithoutTime.date(from: beginSchoolYearString)
@@ -79,6 +79,6 @@ public struct Class: ShortFormed {
   }
 }
 
-extension Class: DecodableFromNestedJSON {
+extension LKClass: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .classGroup
 }

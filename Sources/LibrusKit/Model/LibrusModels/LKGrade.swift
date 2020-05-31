@@ -7,18 +7,18 @@
 
 import Foundation
 
-public struct Grade: Codable {
+public struct LKGrade: Codable {
   public let id: Int
   
-  public let lesson: Lesson
+  public let lesson: LKLesson
   
-  public let subject: Subject
+  public let subject: LKSubject
   
-  public let student: Student
+  public let student: LKStudent
   
-  public let category: Category
+  public let category: LKCategory
   
-  public let teacher: Teacher
+  public let teacher: LKTeacher
   
   public let grade: String
   
@@ -26,9 +26,9 @@ public struct Grade: Codable {
   
   public let addDate: Date
   
-  public let semester: Semester
+  public let semester: LKSemester
   
-  public let type: GradeType?
+  public let type: LKGradeType?
   
   enum CodingKeys: String, CodingKey {
     case id = "Id"
@@ -47,12 +47,12 @@ public struct Grade: Codable {
     guard let container = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
     do {
       self.id = try container.decode(Int.self, forKey: .id)
-      self.lesson = try container.decode(Lesson.self, forKey: .lesson)
-      self.subject = try container.decode(Subject.self, forKey: .subject)
-      self.student = try container.decode(Student.self, forKey: .student)
-      self.category = try container.decode(Category.self, forKey: .category)
-      self.teacher = try container.decode(Teacher.self, forKey: .teacher)
-      self.semester = try container.decode(Semester.self, forKey: .semester)
+      self.lesson = try container.decode(LKLesson.self, forKey: .lesson)
+      self.subject = try container.decode(LKSubject.self, forKey: .subject)
+      self.student = try container.decode(LKStudent.self, forKey: .student)
+      self.category = try container.decode(LKCategory.self, forKey: .category)
+      self.teacher = try container.decode(LKTeacher.self, forKey: .teacher)
+      self.semester = try container.decode(LKSemester.self, forKey: .semester)
       self.grade = try container.decode(String.self, forKey: .grade)
       
       var dateString = try! container.decode(String.self, forKey: .date)
@@ -61,7 +61,7 @@ public struct Grade: Codable {
       dateString = try! container.decode(String.self, forKey: .addDate)
       self.addDate = DateFormatter.ISO8601WithTime.date(from: dateString)!
       
-      self.type = try GradeType(from: decoder)
+      self.type = try LKGradeType(from: decoder)
       return
     } catch {
       // TODO: To be handled

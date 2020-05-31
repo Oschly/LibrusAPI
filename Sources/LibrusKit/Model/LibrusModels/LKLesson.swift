@@ -1,5 +1,5 @@
 //
-//  Lesson.swift
+//  LKLesson.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Lesson: ShortFormed {
+public struct LKLesson: ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case teacher = "Teacher"
     case subject = "Subject"
@@ -18,11 +18,11 @@ public struct Lesson: ShortFormed {
   
   public let url: URL?
   
-  public let teacher: Teacher?
+  public let teacher: LKTeacher?
   
-  public let subject: Subject?
+  public let subject: LKSubject?
   
-  public let classRoom: Class?
+  public let classRoom: LKClass?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
@@ -41,12 +41,12 @@ public struct Lesson: ShortFormed {
       .container(keyedBy: CodingKeys.self)
       else { preconditionFailure() }
     
-    self.teacher = try? baseContainer.decode(Teacher.self, forKey: .teacher)
-    self.subject = try? baseContainer.decode(Subject.self, forKey: .subject)
-    self.classRoom = try? baseContainer.decode(Class.self, forKey: .classRoom)
+    self.teacher = try? baseContainer.decode(LKTeacher.self, forKey: .teacher)
+    self.subject = try? baseContainer.decode(LKSubject.self, forKey: .subject)
+    self.classRoom = try? baseContainer.decode(LKClass.self, forKey: .classRoom)
   }
 }
 
-extension Lesson: DecodableFromNestedJSON {
+extension LKLesson: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .lesson
 }

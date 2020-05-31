@@ -1,5 +1,5 @@
 //
-//  Category.swift
+//  LKCategory.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Category: ShortFormed {
+public struct LKCategory: ShortFormed {
   enum CodingKeys: String, CodingKey {
     case color = "Color"
     case name = "Name"
@@ -22,7 +22,7 @@ public struct Category: ShortFormed {
   
   public let url: URL?
   
-  public let color: CategoryColor?
+  public let color: LKCategoryColor?
   
   public let name: String?
   
@@ -51,7 +51,7 @@ public struct Category: ShortFormed {
     
     guard let fullContainer = try? decoder.container(keyedBy: CodingKeys.self) else { preconditionFailure() }
     
-    self.color = try? fullContainer.decode(CategoryColor.self, forKey: .color)
+    self.color = try? fullContainer.decode(LKCategoryColor.self, forKey: .color)
     self.name = try? fullContainer.decode(String.self, forKey: .name)
     self.adultsExtramural = try? fullContainer.decode(Bool.self, forKey: .adultsExtramural)
     self.adultsDaily = try? fullContainer.decode(Bool.self, forKey: .adultsDaily)
@@ -61,6 +61,6 @@ public struct Category: ShortFormed {
   }
 }
 
-extension Category: DecodableFromNestedJSON {
+extension LKCategory: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .category
 }

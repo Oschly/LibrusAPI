@@ -1,5 +1,5 @@
 //
-//  Event.swift
+//  LKEvent.swift
 //  LibrusKit
 //
 //  Created by Oskar on 30/05/2020.
@@ -7,7 +7,11 @@
 
 import Foundation
 
-public struct Event: ShortFormed, DecodableFromNestedJSON {
+extension Array: DecodableFromNestedJSON where Element == LKEvent {
+  public static var codingKey: ResponseKeys = .events
+}
+
+public struct LKEvent: ShortFormed, DecodableFromNestedJSON {
   private enum CodingKeys: String, CodingKey {
     case content = "Content"
     case date = "Date"
@@ -32,7 +36,7 @@ public struct Event: ShortFormed, DecodableFromNestedJSON {
   
   let date: Date?
   
-  let category: Category?
+  let category: LKCategory?
   
   let lessonNumber: Int?
   
@@ -40,15 +44,15 @@ public struct Event: ShortFormed, DecodableFromNestedJSON {
   
   let end: Date?
   
-  let teacher: Teacher?
+  let teacher: LKTeacher?
   
-  let forClass: Class?
+  let forClass: LKClass?
   
-  let virtualClass: VirtualClass?
+  let virtualClass: LKVirtualClass?
   
   let addDate: Date?
   
-  let onlineLessonUrl: OnlineLesson?
+  let onlineLessonUrl: LKOnlineLesson?
   
   public init(from decoder: Decoder) throws {
     guard let shortFormedContainer = try? decoder
@@ -68,11 +72,11 @@ public struct Event: ShortFormed, DecodableFromNestedJSON {
       else { preconditionFailure()}
     
     self.content = try? baseContainer.decode(String.self, forKey: .content)
-    self.teacher = try baseContainer.decode(Teacher.self, forKey: .teacher)
-    self.forClass = try? baseContainer.decode(Class.self, forKey: .forClass)
-    self.category = try? baseContainer.decode(Category.self, forKey: .category)
-    self.virtualClass = try? baseContainer.decode(VirtualClass.self, forKey: .virtualClass)
-    self.onlineLessonUrl = try? baseContainer.decode(OnlineLesson.self, forKey: .onlineLessonUrl)
+    self.teacher = try baseContainer.decode(LKTeacher.self, forKey: .teacher)
+    self.forClass = try? baseContainer.decode(LKClass.self, forKey: .forClass)
+    self.category = try? baseContainer.decode(LKCategory.self, forKey: .category)
+    self.virtualClass = try? baseContainer.decode(LKVirtualClass.self, forKey: .virtualClass)
+    self.onlineLessonUrl = try? baseContainer.decode(LKOnlineLesson.self, forKey: .onlineLessonUrl)
     
     
     if let dateString = try? baseContainer.decode(String.self, forKey: .date) {

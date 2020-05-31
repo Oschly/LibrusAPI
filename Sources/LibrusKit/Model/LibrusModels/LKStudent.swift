@@ -1,5 +1,5 @@
 //
-//  Student.swift
+//  LKStudent.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Student: DecodableFromNestedJSON, ShortFormed {
+public struct LKStudent: DecodableFromNestedJSON, ShortFormed {
   public static var codingKey: ResponseKeys = .user
   
   public let id: Int?

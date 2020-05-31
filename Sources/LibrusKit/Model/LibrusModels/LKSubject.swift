@@ -1,5 +1,5 @@
 //
-//  Subject.swift
+//  LKSubject.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Subject: Codable, ShortFormed {
+public struct LKSubject: Codable, ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case name = "Name"
     case isExtracurricular = "IsExtraCurricular"
@@ -47,6 +47,6 @@ public struct Subject: Codable, ShortFormed {
   }
 }
 
-extension Subject: DecodableFromNestedJSON {
+extension LKSubject: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .subject
 }

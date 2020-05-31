@@ -1,5 +1,5 @@
 //
-//  Teacher.swift
+//  LKTeacher.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Teacher: ShortFormed, User {
+public struct LKTeacher: ShortFormed, User {
   private enum CodingKeys: String, CodingKey {
     case accountId = "AccountId"
     case firstName = "FirstName"
@@ -45,6 +45,6 @@ public struct Teacher: ShortFormed, User {
   }
 }
 
-extension Teacher: DecodableFromNestedJSON {
+extension LKTeacher: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .user
 }

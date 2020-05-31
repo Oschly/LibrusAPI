@@ -1,5 +1,5 @@
 //
-//  GradeType.swift
+//  LKGradeType.swift
 //  LibrusKit
 //
 //  Created by Oskar on 26/04/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum GradeType: String, Codable {
+public enum LKGradeType: String, Codable {
   case constituent
   
   case semester
@@ -35,7 +35,7 @@ public enum GradeType: String, Codable {
     
     // Decode from storage
     if let rawValue = try? container.decode(String.self, forKey: .gradeType),
-      let type = GradeType(rawValue: rawValue) {
+      let type = LKGradeType(rawValue: rawValue) {
       self = type
       return
     }

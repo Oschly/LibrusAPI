@@ -11,7 +11,7 @@ public protocol DecodableFromNestedJSON: Codable {
   static var codingKey: ResponseKeys { get }
 }
 
-public struct Response<T: DecodableFromNestedJSON>: Codable {
+struct Response<T: DecodableFromNestedJSON>: Codable {
   let root: T
   
   public init(from decoder: Decoder) throws {

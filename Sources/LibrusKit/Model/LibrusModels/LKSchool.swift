@@ -1,14 +1,14 @@
 //
-//  School.swift
-//  ddd
+//  LKSchool.swift
+//  LibrusKit
 //
 //  Created by Oskar on 05/05/2020.
-//  Copyright © 2020 Oschly. All rights reserved.
+//  Copyright © 2020 Oskar Chybowski. All rights reserved.
 //
 
 import Foundation
 
-public struct School: ShortFormed {
+public struct LKSchool: ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case name = "Name"
     case shortName = "ShortName"
@@ -26,7 +26,7 @@ public struct School: ShortFormed {
   
   public let type: String?
   
-  public let lessonsRange: [LessonsRange]?
+  public let lessonsRange: [LKLessonTimeRange]?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder
@@ -48,10 +48,10 @@ public struct School: ShortFormed {
     self.name = try? baseContainer.decode(String.self, forKey: .name)
     self.shortName = try? baseContainer.decode(String.self, forKey: .shortName)
     self.type = try? baseContainer.decode(String.self, forKey: .type)
-    self.lessonsRange = try? baseContainer.decode([LessonsRange].self, forKey: .lessonsRange)
+    self.lessonsRange = try? baseContainer.decode([LKLessonTimeRange].self, forKey: .lessonsRange)
   }
 }
 
-extension School: DecodableFromNestedJSON {
+extension LKSchool: DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .school
 }

@@ -1,5 +1,5 @@
 //
-//  VirtualClass.swift
+//  LKVirtualClass.swift
 //  LibrusKit
 //
 //  Created by Oskar on 30/05/2020.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct VirtualClass: ShortFormed, DecodableFromNestedJSON {
+public struct LKVirtualClass: ShortFormed, DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .category
   
   var id: Int?
