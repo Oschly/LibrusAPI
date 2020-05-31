@@ -18,8 +18,6 @@ extension JSONDecoder {
 extension JSONEncoder {
   static let shared: JSONEncoder = {
     var encoder = JSONEncoder()
-    encoder.keyEncodingStrategy = .convertToSnakeCase
-    encoder.outputFormatting = .withoutEscapingSlashes
     return encoder
   }()
 }
