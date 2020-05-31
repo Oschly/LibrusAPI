@@ -8,7 +8,7 @@
 import Foundation
 
 public final class LKAPI {
-  static let instance = LKAPI()
+  static public let instance = LKAPI()
   
   // TODO: Fix that
   public func getHomework(token: String, completion: @escaping (Result<[Homework], Error>) -> ()) {
