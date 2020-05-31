@@ -10,9 +10,9 @@ import Foundation
 public struct LKVirtualClass: ShortFormed, DecodableFromNestedJSON {
   public static var codingKey: ResponseKeys = .category
   
-  var id: Int?
+  private(set) public var id: Int?
   
-  var url: URL?
+  private(set) public var url: URL?
   
   public init(from decoder: Decoder) {
     guard let shortFormedContainer = try? decoder

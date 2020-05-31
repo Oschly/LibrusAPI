@@ -14,11 +14,11 @@ public struct LKTeacher: ShortFormed, User {
     case lastName = "LastName"
   }
   
-  private(set) public var accountId: String? = nil
+  public let accountId: String?
   
-  private(set) public var firstName: String? = nil
+  public let firstName: String?
   
-  private(set) public var lastName: String? = nil
+  public let lastName: String?
   
   private(set) public var id: Int?
   

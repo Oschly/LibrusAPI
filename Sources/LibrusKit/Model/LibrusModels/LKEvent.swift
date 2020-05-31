@@ -28,31 +28,31 @@ public struct LKEvent: ShortFormed, DecodableFromNestedJSON {
   
   public static var codingKey: ResponseKeys = .events
   
-  let id: Int?
+  public let id: Int?
   
-  let url: URL?
+  public let url: URL?
   
-  let content: String?
+  public let content: String?
   
-  let date: Date?
+  public let date: Date?
   
-  let category: LKCategory?
+  public let category: LKCategory?
   
-  let lessonNumber: Int?
+  public let lessonNumber: Int?
   
-  let begin: Date?
+  public let begin: Date?
   
-  let end: Date?
+  public let end: Date?
   
-  let teacher: LKTeacher?
+  public let teacher: LKTeacher?
   
-  let forClass: LKClass?
+  public let forClass: LKClass?
   
-  let virtualClass: LKVirtualClass?
+  public let virtualClass: LKVirtualClass?
   
-  let addDate: Date?
+  public let addDate: Date?
   
-  let onlineLessonUrl: LKOnlineLesson?
+  public let onlineLessonUrl: LKOnlineLesson?
   
   public init(from decoder: Decoder) throws {
     guard let shortFormedContainer = try? decoder
