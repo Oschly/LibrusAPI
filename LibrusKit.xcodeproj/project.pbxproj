@@ -1,0 +1,831 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"LibrusAPI::LibrusAPIPackageTests::ProductTarget" /* LibrusAPIPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_32 /* Build configuration list for PBXAggregateTarget "LibrusAPIPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_35 /* PBXTargetDependency */,
+			);
+			name = LibrusAPIPackageTests;
+			productName = LibrusAPIPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		470333FA245D53EC0029CB5F /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470333F9245D53EC0029CB5F /* Error.swift */; };
+		47099EA22450B0AD0040A0AF /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA12450B0AD0040A0AF /* AsyncOperation.swift */; };
+		47099EA42450B0C70040A0AF /* CSRFTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA32450B0C70040A0AF /* CSRFTokenOperation.swift */; };
+		47099EA62450B0E50040A0AF /* UpdateCookiesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA52450B0E50040A0AF /* UpdateCookiesOperation.swift */; };
+		47099EA82450B1070040A0AF /* AcquiringAuthCodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA72450B1070040A0AF /* AcquiringAuthCodeOperation.swift */; };
+		4718055A24483B1C00052478 /* URL+FormURLEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055924483B1C00052478 /* URL+FormURLEncoded.swift */; };
+		4718055C24483B3D00052478 /* JSON+Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055B24483B3D00052478 /* JSON+Singleton.swift */; };
+		4718055F24483B7800052478 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055E24483B7800052478 /* AccessToken.swift */; };
+		471805742448449A00052478 /* CustomSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471805732448449A00052478 /* CustomSessionDelegate.swift */; };
+		471805782448583B00052478 /* StoragePropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471805772448583B00052478 /* StoragePropertyWrapper.swift */; };
+		471C14B3244DF4D800F015EE /* AccessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471C14B2244DF4D800F015EE /* AccessList.swift */; };
+		47251F36245EB11D00BAB263 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47251F35245EB11D00BAB263 /* Response.swift */; };
+		47251F38245EB16200BAB263 /* CategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47251F37245EB16200BAB263 /* CategoryColor.swift */; };
+		4736850B2462AF3A006BA35B /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850A2462AF3A006BA35B /* School.swift */; };
+		4736850D2462AF56006BA35B /* Int+FormatToHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850C2462AF56006BA35B /* Int+FormatToHour.swift */; };
+		4736850F2462AF6D006BA35B /* LessonRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850E2462AF6D006BA35B /* LessonRange.swift */; };
+		47380606243F4F3300DEB6D8 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 47380605243F4F3300DEB6D8 /* SwiftSoup */; };
+		473E286724614BB700AC9903 /* DateFormatter+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E286624614BB700AC9903 /* DateFormatter+ISO8601.swift */; };
+		473E286B24614C0400AC9903 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E286924614C0400AC9903 /* Class.swift */; };
+		47458FB6244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47458FB5244610FD00B46A01 /* LibrusAuthenticator.swift */; };
+		47458FB7244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47458FB5244610FD00B46A01 /* LibrusAuthenticator.swift */; };
+		47458FB8244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47458FB5244610FD00B46A01 /* LibrusAuthenticator.swift */; };
+		475E52DE2448BD8400EBDF66 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475E52DD2448BD8400EBDF66 /* Errors.swift */; };
+		475E52E02448BDA200EBDF66 /* RefreshableToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475E52DF2448BDA200EBDF66 /* RefreshableToken.swift */; };
+		47769A9F245AD6A9003FCB97 /* BaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47769A9E245AD6A9003FCB97 /* BaseUser.swift */; };
+		478763AE2467E95F00FBDBA0 /* AccessTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDCA582451A62F00BA90B9 /* AccessTokenOperation.swift */; };
+		478763AF2467E95F00FBDBA0 /* AccountsListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDCA562451A61F00BA90B9 /* AccountsListOperation.swift */; };
+		478763B02467E95F00FBDBA0 /* AcquiringAuthCodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA72450B1070040A0AF /* AcquiringAuthCodeOperation.swift */; };
+		478763B12467E95F00FBDBA0 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA12450B0AD0040A0AF /* AsyncOperation.swift */; };
+		478763B22467E95F00FBDBA0 /* CSRFTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA32450B0C70040A0AF /* CSRFTokenOperation.swift */; };
+		478763B32467E95F00FBDBA0 /* RefreshTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8BC2454BFC500C069D2 /* RefreshTokenOperation.swift */; };
+		478763B42467E95F00FBDBA0 /* UpdateCookiesOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47099EA52450B0E50040A0AF /* UpdateCookiesOperation.swift */; };
+		478763B52467E95F00FBDBA0 /* CustomSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471805732448449A00052478 /* CustomSessionDelegate.swift */; };
+		478763B62467E95F00FBDBA0 /* DateFormatter+ISO8601.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E286624614BB700AC9903 /* DateFormatter+ISO8601.swift */; };
+		478763B72467E95F00FBDBA0 /* JSON+Singleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055B24483B3D00052478 /* JSON+Singleton.swift */; };
+		478763B82467E95F00FBDBA0 /* StoragePropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471805772448583B00052478 /* StoragePropertyWrapper.swift */; };
+		478763B92467E95F00FBDBA0 /* URL+FormURLEncoded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055924483B1C00052478 /* URL+FormURLEncoded.swift */; };
+		478763BA2467E95F00FBDBA0 /* Int+FormatToHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850C2462AF56006BA35B /* Int+FormatToHour.swift */; };
+		478763BB2467E95F00FBDBA0 /* AccessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471C14B2244DF4D800F015EE /* AccessList.swift */; };
+		478763BC2467E95F00FBDBA0 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4718055E24483B7800052478 /* AccessToken.swift */; };
+		478763BD2467E95F00FBDBA0 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470333F9245D53EC0029CB5F /* Error.swift */; };
+		478763BE2467E95F00FBDBA0 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475E52DD2448BD8400EBDF66 /* Errors.swift */; };
+		478763BF2467E95F00FBDBA0 /* RefreshableToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475E52DF2448BDA200EBDF66 /* RefreshableToken.swift */; };
+		478763C02467E95F00FBDBA0 /* BaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47769A9E245AD6A9003FCB97 /* BaseUser.swift */; };
+		478763C12467E95F00FBDBA0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D02455716000C069D2 /* Category.swift */; };
+		478763C22467E95F00FBDBA0 /* CategoryColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47251F37245EB16200BAB263 /* CategoryColor.swift */; };
+		478763C32467E95F00FBDBA0 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473E286924614C0400AC9903 /* Class.swift */; };
+		478763C42467E95F00FBDBA0 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C82455709600C069D2 /* Grade.swift */; };
+		478763C52467E95F00FBDBA0 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C62455708700C069D2 /* Grades.swift */; };
+		478763C62467E95F00FBDBA0 /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D62455718D00C069D2 /* GradeType.swift */; };
+		478763C72467E95F00FBDBA0 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CA2455710800C069D2 /* Lesson.swift */; };
+		478763C82467E95F00FBDBA0 /* LessonRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850E2462AF6D006BA35B /* LessonRange.swift */; };
+		478763C92467E95F00FBDBA0 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47251F35245EB11D00BAB263 /* Response.swift */; };
+		478763CA2467E95F00FBDBA0 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736850A2462AF3A006BA35B /* School.swift */; };
+		478763CB2467E95F00FBDBA0 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D42455718000C069D2 /* Semester.swift */; };
+		478763CC2467E95F00FBDBA0 /* ShortFormed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C42455706900C069D2 /* ShortFormed.swift */; };
+		478763CD2467E95F00FBDBA0 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CE2455714F00C069D2 /* Student.swift */; };
+		478763CE2467E95F00FBDBA0 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CC2455713100C069D2 /* Subject.swift */; };
+		478763CF2467E95F00FBDBA0 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D22455716E00C069D2 /* Teacher.swift */; };
+		47A0908A2482E7DC001985F2 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A090892482E7DC001985F2 /* Event.swift */; };
+		47A0908C2482E7EE001985F2 /* OnlineLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0908B2482E7EE001985F2 /* OnlineLesson.swift */; };
+		47A0908E2482E809001985F2 /* VirtualClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A0908D2482E809001985F2 /* VirtualClass.swift */; };
+		47CDCA572451A61F00BA90B9 /* AccountsListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDCA562451A61F00BA90B9 /* AccountsListOperation.swift */; };
+		47CDCA592451A62F00BA90B9 /* AccessTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDCA582451A62F00BA90B9 /* AccessTokenOperation.swift */; };
+		47CDCCAA24837162000096E9 /* LibrusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CDCCA924837162000096E9 /* LibrusAPI.swift */; };
+		47FDA8BD2454BFC500C069D2 /* RefreshTokenOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8BC2454BFC500C069D2 /* RefreshTokenOperation.swift */; };
+		47FDA8C52455706900C069D2 /* ShortFormed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C42455706900C069D2 /* ShortFormed.swift */; };
+		47FDA8C72455708700C069D2 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C62455708700C069D2 /* Grades.swift */; };
+		47FDA8C92455709600C069D2 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8C82455709600C069D2 /* Grade.swift */; };
+		47FDA8CB2455710800C069D2 /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CA2455710800C069D2 /* Lesson.swift */; };
+		47FDA8CD2455713100C069D2 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CC2455713100C069D2 /* Subject.swift */; };
+		47FDA8CF2455714F00C069D2 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8CE2455714F00C069D2 /* Student.swift */; };
+		47FDA8D12455716000C069D2 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D02455716000C069D2 /* Category.swift */; };
+		47FDA8D32455716E00C069D2 /* Teacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D22455716E00C069D2 /* Teacher.swift */; };
+		47FDA8D52455718000C069D2 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D42455718000C069D2 /* Semester.swift */; };
+		47FDA8D72455718D00C069D2 /* GradeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FDA8D62455718D00C069D2 /* GradeType.swift */; };
+		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_41 /* LibrusAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* LibrusAPITests.swift */; };
+		OBJ_42 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
+		OBJ_44 /* LibrusKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "LibrusAPI::LibrusAPI::Product" /* LibrusKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		47380602243F4F0B00DEB6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "LibrusAPI::LibrusAPI";
+			remoteInfo = LibrusAPI;
+		};
+		47380603243F4F0C00DEB6D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "LibrusAPI::LibrusAPITests";
+			remoteInfo = LibrusAPITests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		470333F9245D53EC0029CB5F /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		47099EA12450B0AD0040A0AF /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		47099EA32450B0C70040A0AF /* CSRFTokenOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSRFTokenOperation.swift; sourceTree = "<group>"; };
+		47099EA52450B0E50040A0AF /* UpdateCookiesOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCookiesOperation.swift; sourceTree = "<group>"; };
+		47099EA72450B1070040A0AF /* AcquiringAuthCodeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcquiringAuthCodeOperation.swift; sourceTree = "<group>"; };
+		4718055924483B1C00052478 /* URL+FormURLEncoded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+FormURLEncoded.swift"; sourceTree = "<group>"; };
+		4718055B24483B3D00052478 /* JSON+Singleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSON+Singleton.swift"; sourceTree = "<group>"; };
+		4718055E24483B7800052478 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		471805732448449A00052478 /* CustomSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSessionDelegate.swift; sourceTree = "<group>"; };
+		471805772448583B00052478 /* StoragePropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePropertyWrapper.swift; sourceTree = "<group>"; };
+		471C14B2244DF4D800F015EE /* AccessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessList.swift; sourceTree = "<group>"; };
+		47251F35245EB11D00BAB263 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		47251F37245EB16200BAB263 /* CategoryColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryColor.swift; sourceTree = "<group>"; };
+		4736850A2462AF3A006BA35B /* School.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		4736850C2462AF56006BA35B /* Int+FormatToHour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+FormatToHour.swift"; sourceTree = "<group>"; };
+		4736850E2462AF6D006BA35B /* LessonRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRange.swift; sourceTree = "<group>"; };
+		473E286624614BB700AC9903 /* DateFormatter+ISO8601.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+ISO8601.swift"; sourceTree = "<group>"; };
+		473E286924614C0400AC9903 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		47458FB5244610FD00B46A01 /* LibrusAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibrusAuthenticator.swift; sourceTree = "<group>"; };
+		475E52DD2448BD8400EBDF66 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		475E52DF2448BDA200EBDF66 /* RefreshableToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableToken.swift; sourceTree = "<group>"; };
+		47769A9E245AD6A9003FCB97 /* BaseUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUser.swift; sourceTree = "<group>"; };
+		47A090892482E7DC001985F2 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		47A0908B2482E7EE001985F2 /* OnlineLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineLesson.swift; sourceTree = "<group>"; };
+		47A0908D2482E809001985F2 /* VirtualClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualClass.swift; sourceTree = "<group>"; };
+		47CDCA562451A61F00BA90B9 /* AccountsListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsListOperation.swift; sourceTree = "<group>"; };
+		47CDCA582451A62F00BA90B9 /* AccessTokenOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenOperation.swift; sourceTree = "<group>"; };
+		47CDCCA924837162000096E9 /* LibrusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrusAPI.swift; sourceTree = "<group>"; };
+		47FDA8BC2454BFC500C069D2 /* RefreshTokenOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTokenOperation.swift; sourceTree = "<group>"; };
+		47FDA8C42455706900C069D2 /* ShortFormed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortFormed.swift; sourceTree = "<group>"; };
+		47FDA8C62455708700C069D2 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
+		47FDA8C82455709600C069D2 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		47FDA8CA2455710800C069D2 /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
+		47FDA8CC2455713100C069D2 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		47FDA8CE2455714F00C069D2 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		47FDA8D02455716000C069D2 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		47FDA8D22455716E00C069D2 /* Teacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Teacher.swift; sourceTree = "<group>"; };
+		47FDA8D42455718000C069D2 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
+		47FDA8D62455718D00C069D2 /* GradeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeType.swift; sourceTree = "<group>"; };
+		"LibrusAPI::LibrusAPI::Product" /* LibrusKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LibrusKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"LibrusAPI::LibrusAPITests::Product" /* LibrusAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = LibrusAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		OBJ_12 /* LibrusAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibrusAPITests.swift; sourceTree = "<group>"; };
+		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		OBJ_24 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				47380606243F4F3300DEB6D8 /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_44 /* LibrusKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		47099EA02450B09F0040A0AF /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				47CDCA582451A62F00BA90B9 /* AccessTokenOperation.swift */,
+				47CDCA562451A61F00BA90B9 /* AccountsListOperation.swift */,
+				47099EA72450B1070040A0AF /* AcquiringAuthCodeOperation.swift */,
+				47099EA12450B0AD0040A0AF /* AsyncOperation.swift */,
+				47099EA32450B0C70040A0AF /* CSRFTokenOperation.swift */,
+				47FDA8BC2454BFC500C069D2 /* RefreshTokenOperation.swift */,
+				47099EA52450B0E50040A0AF /* UpdateCookiesOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		4718055824483AEE00052478 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				471805732448449A00052478 /* CustomSessionDelegate.swift */,
+				473E286624614BB700AC9903 /* DateFormatter+ISO8601.swift */,
+				4718055B24483B3D00052478 /* JSON+Singleton.swift */,
+				471805772448583B00052478 /* StoragePropertyWrapper.swift */,
+				4718055924483B1C00052478 /* URL+FormURLEncoded.swift */,
+				4736850C2462AF56006BA35B /* Int+FormatToHour.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4718055D24483B6E00052478 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				47FDA8C32455703800C069D2 /* LibrusAuthenticationModels */,
+				47FDA8C22455702F00C069D2 /* LibrusModels */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		47FDA8C22455702F00C069D2 /* LibrusModels */ = {
+			isa = PBXGroup;
+			children = (
+				47769A9E245AD6A9003FCB97 /* BaseUser.swift */,
+				47FDA8D02455716000C069D2 /* Category.swift */,
+				47251F37245EB16200BAB263 /* CategoryColor.swift */,
+				473E286924614C0400AC9903 /* Class.swift */,
+				47FDA8C82455709600C069D2 /* Grade.swift */,
+				47FDA8C62455708700C069D2 /* Grades.swift */,
+				47FDA8D62455718D00C069D2 /* GradeType.swift */,
+				47FDA8CA2455710800C069D2 /* Lesson.swift */,
+				4736850E2462AF6D006BA35B /* LessonRange.swift */,
+				47251F35245EB11D00BAB263 /* Response.swift */,
+				4736850A2462AF3A006BA35B /* School.swift */,
+				47FDA8D42455718000C069D2 /* Semester.swift */,
+				47FDA8C42455706900C069D2 /* ShortFormed.swift */,
+				47FDA8CE2455714F00C069D2 /* Student.swift */,
+				47FDA8CC2455713100C069D2 /* Subject.swift */,
+				47FDA8D22455716E00C069D2 /* Teacher.swift */,
+				47A090892482E7DC001985F2 /* Event.swift */,
+				47A0908B2482E7EE001985F2 /* OnlineLesson.swift */,
+				47A0908D2482E809001985F2 /* VirtualClass.swift */,
+			);
+			path = LibrusModels;
+			sourceTree = "<group>";
+		};
+		47FDA8C32455703800C069D2 /* LibrusAuthenticationModels */ = {
+			isa = PBXGroup;
+			children = (
+				471C14B2244DF4D800F015EE /* AccessList.swift */,
+				4718055E24483B7800052478 /* AccessToken.swift */,
+				470333F9245D53EC0029CB5F /* Error.swift */,
+				475E52DD2448BD8400EBDF66 /* Errors.swift */,
+				475E52DF2448BDA200EBDF66 /* RefreshableToken.swift */,
+			);
+			path = LibrusAuthenticationModels;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* LibrusAPITests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_11 /* LibrusAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* LibrusAPITests.swift */,
+				OBJ_13 /* XCTestManifests.swift */,
+			);
+			name = LibrusAPITests;
+			path = Tests/LibrusAPITests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"LibrusAPI::LibrusAPITests::Product" /* LibrusAPITests.xctest */,
+				"LibrusAPI::LibrusAPI::Product" /* LibrusKit.framework */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_10 /* Tests */,
+				OBJ_14 /* Products */,
+				OBJ_17 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* LibrusAPI */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_8 /* LibrusAPI */ = {
+			isa = PBXGroup;
+			children = (
+				47458FB5244610FD00B46A01 /* LibrusAuthenticator.swift */,
+				47CDCCA924837162000096E9 /* LibrusAPI.swift */,
+				47099EA02450B09F0040A0AF /* Operations */,
+				4718055824483AEE00052478 /* Extensions */,
+				4718055D24483B6E00052478 /* Model */,
+			);
+			name = LibrusAPI;
+			path = Sources/LibrusAPI;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"LibrusAPI::LibrusAPI" /* LibrusAPI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_19 /* Build configuration list for PBXNativeTarget "LibrusAPI" */;
+			buildPhases = (
+				OBJ_22 /* Sources */,
+				OBJ_24 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LibrusAPI;
+			packageProductDependencies = (
+				47380605243F4F3300DEB6D8 /* SwiftSoup */,
+			);
+			productName = LibrusAPI;
+			productReference = "LibrusAPI::LibrusAPI::Product" /* LibrusKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"LibrusAPI::LibrusAPITests" /* LibrusAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_37 /* Build configuration list for PBXNativeTarget "LibrusAPITests" */;
+			buildPhases = (
+				OBJ_40 /* Sources */,
+				OBJ_43 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_45 /* PBXTargetDependency */,
+			);
+			name = LibrusAPITests;
+			productName = LibrusAPITests;
+			productReference = "LibrusAPI::LibrusAPITests::Product" /* LibrusAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"LibrusAPI::SwiftPMPackageDescription" /* LibrusAPIPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_26 /* Build configuration list for PBXNativeTarget "LibrusAPIPackageDescription" */;
+			buildPhases = (
+				OBJ_29 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LibrusAPIPackageDescription;
+			productName = LibrusAPIPackageDescription;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 9999;
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"LibrusAPI::LibrusAPIPackageTests::ProductTarget" = {
+						LastSwiftMigration = 1140;
+					};
+				};
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "LibrusAPI" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5;
+			packageReferences = (
+				47380604243F4F3300DEB6D8 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
+			productRefGroup = OBJ_14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"LibrusAPI::LibrusAPI" /* LibrusAPI */,
+				"LibrusAPI::SwiftPMPackageDescription" /* LibrusAPIPackageDescription */,
+				"LibrusAPI::LibrusAPIPackageTests::ProductTarget" /* LibrusAPIPackageTests */,
+				"LibrusAPI::LibrusAPITests" /* LibrusAPITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		OBJ_22 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				4736850B2462AF3A006BA35B /* School.swift in Sources */,
+				4718055C24483B3D00052478 /* JSON+Singleton.swift in Sources */,
+				47FDA8C72455708700C069D2 /* Grades.swift in Sources */,
+				471805742448449A00052478 /* CustomSessionDelegate.swift in Sources */,
+				47251F38245EB16200BAB263 /* CategoryColor.swift in Sources */,
+				47FDA8CF2455714F00C069D2 /* Student.swift in Sources */,
+				471C14B3244DF4D800F015EE /* AccessList.swift in Sources */,
+				47099EA42450B0C70040A0AF /* CSRFTokenOperation.swift in Sources */,
+				47099EA62450B0E50040A0AF /* UpdateCookiesOperation.swift in Sources */,
+				473E286724614BB700AC9903 /* DateFormatter+ISO8601.swift in Sources */,
+				471805782448583B00052478 /* StoragePropertyWrapper.swift in Sources */,
+				47CDCA592451A62F00BA90B9 /* AccessTokenOperation.swift in Sources */,
+				473E286B24614C0400AC9903 /* Class.swift in Sources */,
+				47FDA8D72455718D00C069D2 /* GradeType.swift in Sources */,
+				47CDCCAA24837162000096E9 /* LibrusAPI.swift in Sources */,
+				47FDA8BD2454BFC500C069D2 /* RefreshTokenOperation.swift in Sources */,
+				475E52DE2448BD8400EBDF66 /* Errors.swift in Sources */,
+				470333FA245D53EC0029CB5F /* Error.swift in Sources */,
+				47FDA8C52455706900C069D2 /* ShortFormed.swift in Sources */,
+				47A0908C2482E7EE001985F2 /* OnlineLesson.swift in Sources */,
+				47FDA8D32455716E00C069D2 /* Teacher.swift in Sources */,
+				4736850F2462AF6D006BA35B /* LessonRange.swift in Sources */,
+				47769A9F245AD6A9003FCB97 /* BaseUser.swift in Sources */,
+				47CDCA572451A61F00BA90B9 /* AccountsListOperation.swift in Sources */,
+				4718055A24483B1C00052478 /* URL+FormURLEncoded.swift in Sources */,
+				47FDA8D12455716000C069D2 /* Category.swift in Sources */,
+				4736850D2462AF56006BA35B /* Int+FormatToHour.swift in Sources */,
+				47251F36245EB11D00BAB263 /* Response.swift in Sources */,
+				47099EA82450B1070040A0AF /* AcquiringAuthCodeOperation.swift in Sources */,
+				47458FB6244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */,
+				47A0908A2482E7DC001985F2 /* Event.swift in Sources */,
+				47FDA8CB2455710800C069D2 /* Lesson.swift in Sources */,
+				47FDA8CD2455713100C069D2 /* Subject.swift in Sources */,
+				47A0908E2482E809001985F2 /* VirtualClass.swift in Sources */,
+				475E52E02448BDA200EBDF66 /* RefreshableToken.swift in Sources */,
+				47099EA22450B0AD0040A0AF /* AsyncOperation.swift in Sources */,
+				47FDA8C92455709600C069D2 /* Grade.swift in Sources */,
+				47FDA8D52455718000C069D2 /* Semester.swift in Sources */,
+				4718055F24483B7800052478 /* AccessToken.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_30 /* Package.swift in Sources */,
+				47458FB7244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				478763AE2467E95F00FBDBA0 /* AccessTokenOperation.swift in Sources */,
+				478763AF2467E95F00FBDBA0 /* AccountsListOperation.swift in Sources */,
+				478763B02467E95F00FBDBA0 /* AcquiringAuthCodeOperation.swift in Sources */,
+				478763B12467E95F00FBDBA0 /* AsyncOperation.swift in Sources */,
+				478763B22467E95F00FBDBA0 /* CSRFTokenOperation.swift in Sources */,
+				478763B32467E95F00FBDBA0 /* RefreshTokenOperation.swift in Sources */,
+				478763B42467E95F00FBDBA0 /* UpdateCookiesOperation.swift in Sources */,
+				478763B52467E95F00FBDBA0 /* CustomSessionDelegate.swift in Sources */,
+				478763B62467E95F00FBDBA0 /* DateFormatter+ISO8601.swift in Sources */,
+				478763B72467E95F00FBDBA0 /* JSON+Singleton.swift in Sources */,
+				478763B82467E95F00FBDBA0 /* StoragePropertyWrapper.swift in Sources */,
+				478763B92467E95F00FBDBA0 /* URL+FormURLEncoded.swift in Sources */,
+				478763BA2467E95F00FBDBA0 /* Int+FormatToHour.swift in Sources */,
+				478763BB2467E95F00FBDBA0 /* AccessList.swift in Sources */,
+				478763BC2467E95F00FBDBA0 /* AccessToken.swift in Sources */,
+				478763BD2467E95F00FBDBA0 /* Error.swift in Sources */,
+				478763BE2467E95F00FBDBA0 /* Errors.swift in Sources */,
+				478763BF2467E95F00FBDBA0 /* RefreshableToken.swift in Sources */,
+				478763C02467E95F00FBDBA0 /* BaseUser.swift in Sources */,
+				478763C12467E95F00FBDBA0 /* Category.swift in Sources */,
+				478763C22467E95F00FBDBA0 /* CategoryColor.swift in Sources */,
+				478763C32467E95F00FBDBA0 /* Class.swift in Sources */,
+				478763C42467E95F00FBDBA0 /* Grade.swift in Sources */,
+				478763C52467E95F00FBDBA0 /* Grades.swift in Sources */,
+				478763C62467E95F00FBDBA0 /* GradeType.swift in Sources */,
+				478763C72467E95F00FBDBA0 /* Lesson.swift in Sources */,
+				478763C82467E95F00FBDBA0 /* LessonRange.swift in Sources */,
+				478763C92467E95F00FBDBA0 /* Response.swift in Sources */,
+				478763CA2467E95F00FBDBA0 /* School.swift in Sources */,
+				478763CB2467E95F00FBDBA0 /* Semester.swift in Sources */,
+				478763CC2467E95F00FBDBA0 /* ShortFormed.swift in Sources */,
+				478763CD2467E95F00FBDBA0 /* Student.swift in Sources */,
+				478763CE2467E95F00FBDBA0 /* Subject.swift in Sources */,
+				478763CF2467E95F00FBDBA0 /* Teacher.swift in Sources */,
+				OBJ_41 /* LibrusAPITests.swift in Sources */,
+				OBJ_42 /* XCTestManifests.swift in Sources */,
+				47458FB8244610FD00B46A01 /* LibrusAuthenticator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "LibrusAPI::LibrusAPITests" /* LibrusAPITests */;
+			targetProxy = 47380603243F4F0C00DEB6D8 /* PBXContainerItemProxy */;
+		};
+		OBJ_45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "LibrusAPI::LibrusAPI" /* LibrusAPI */;
+			targetProxy = 47380602243F4F0B00DEB6D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		OBJ_20 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				DEVELOPMENT_TEAM = XGVVDG6D64;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = LibrusAPI.xcodeproj/LibrusAPI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LibrusKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = LibrusKit;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = LibrusAPI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_21 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				DEVELOPMENT_TEAM = XGVVDG6D64;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = LibrusAPI.xcodeproj/LibrusAPI_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = LibrusKit;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = LibrusKit;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGET_NAME = LibrusAPI;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.2.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.2.0";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+					"DEBUG=1",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = LibrusAPI.xcodeproj/LibrusAPITests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LibrusAPITests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		OBJ_39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = LibrusAPI.xcodeproj/LibrusAPITests_Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@loader_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 5.0;
+				TARGET_NAME = LibrusAPITests;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"SWIFT_PACKAGE=1",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		OBJ_19 /* Build configuration list for PBXNativeTarget "LibrusAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_20 /* Debug */,
+				OBJ_21 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "LibrusAPI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_26 /* Build configuration list for PBXNativeTarget "LibrusAPIPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_27 /* Debug */,
+				OBJ_28 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_32 /* Build configuration list for PBXAggregateTarget "LibrusAPIPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_33 /* Debug */,
+				OBJ_34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_37 /* Build configuration list for PBXNativeTarget "LibrusAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_38 /* Debug */,
+				OBJ_39 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47380604243F4F3300DEB6D8 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47380605243F4F3300DEB6D8 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47380604243F4F3300DEB6D8 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
