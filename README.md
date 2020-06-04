@@ -1,3 +1,3 @@
-# LibrusAPI
+# LibrusKit
 
 A description of this package.
