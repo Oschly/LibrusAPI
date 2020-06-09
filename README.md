@@ -52,8 +52,7 @@ LibrusKit is a wrapper for one of the most popular school registers in Poland - 
 
 
 	```swift
-	LKAuthenticator.instance.getAccountsList(email: "example@example.com, 
-											password: "examplePassword") { result in 
+	LKAuthenticator.instance.getAccountsList(email: "example@example.com,  password: "examplePassword") { result in 
 		do {
 			let accountList = try result.get() // open result
 			let chosenAccount = accountList.accounts[0] // Take first available account
@@ -62,7 +61,7 @@ LibrusKit is a wrapper for one of the most popular school registers in Poland - 
 			print(error)
 		}
 	}
-```
+	```
 
 5. Now You can call any method that You would like to.
 
