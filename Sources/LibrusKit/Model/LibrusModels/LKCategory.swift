@@ -61,6 +61,6 @@ public struct LKCategory: ShortFormed {
   }
 }
 
-extension LKCategory: DecodableFromNestedJSON {
+extension LKCategory: NestedInJSON {
   public static var codingKey: ResponseKeys = .category
 }

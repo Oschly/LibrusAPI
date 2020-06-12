@@ -7,16 +7,16 @@
 
 import Foundation
 
-public protocol DecodableFromNestedJSON: Codable {
+public protocol NestedInJSON: Codable {
   static var codingKey: ResponseKeys { get }
 }
 
-struct Response<T: DecodableFromNestedJSON>: Codable {
+struct Response<T: NestedInJSON>: Codable {
   let root: T
   
   public init(from decoder: Decoder) throws {
     guard let container = try? decoder.container(keyedBy: ResponseKeys.self) else { preconditionFailure() }
-    self.root = try! container.decode(T.self, forKey: T.codingKey)
+    self.root = try container.decode(T.self, forKey: T.codingKey)
   }
 }
 
@@ -30,7 +30,9 @@ public enum ResponseKeys: String, CodingKey {
   case lesson = "Lesson"
   
   // "class" is a reserved keyword.
-  case classGroup = "Class"
+  case standardClass = "Class"
+  
+  case virtualClass = "VirtualClass"
   
   case school = "Unit"
   

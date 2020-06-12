@@ -9,7 +9,7 @@
 import Foundation
 
 protocol TokenRefresher {
-  func refreshAccessToken(token: String, login: String)
+  func refreshAccessToken(credentials: RefreshCredentials, refreshCompletion: (() -> Void)?)
 }
 
 public class LKAuthenticator {
@@ -52,14 +52,20 @@ public class LKAuthenticator {
 }
 
 extension LKAuthenticator: TokenRefresher {
-  func refreshAccessToken(token: String, login: String) {
-    let refreshOp = RefreshTokenOperation(token: token, login: login)
-    let accountsListOp = AccountsListOperation()
+  func refreshAccessToken(credentials: RefreshCredentials, refreshCompletion: (() -> Void)? = nil) {
+    let refreshOp = RefreshTokenOperation(token: credentials.token, login: credentials.login)
     
-    accountsListOp.completion = loginCompletion
-    
-    loginQueue.addOperations([refreshOp, accountsListOp],
-                             waitUntilFinished: false)
+    if let refreshCompletion = refreshCompletion {
+      refreshOp.completionBlock = refreshCompletion
+      
+      loginQueue.addOperations([refreshOp], waitUntilFinished: false)
+    } else {
+      let accountsListOp = AccountsListOperation()
+      accountsListOp.completion = loginCompletion
+      
+      loginQueue.addOperations([refreshOp, accountsListOp],
+                               waitUntilFinished: false)
+    }
   }
 }
 

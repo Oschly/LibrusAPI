@@ -47,6 +47,6 @@ public struct LKLesson: ShortFormed {
   }
 }
 
-extension LKLesson: DecodableFromNestedJSON {
+extension LKLesson: NestedInJSON {
   public static var codingKey: ResponseKeys = .lesson
 }

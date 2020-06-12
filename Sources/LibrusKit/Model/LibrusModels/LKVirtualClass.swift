@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct LKVirtualClass: ShortFormed, DecodableFromNestedJSON {
-  public static var codingKey: ResponseKeys = .category
+public struct LKVirtualClass: ShortFormed, NestedInJSON {
+  public static var codingKey: ResponseKeys = .virtualClass
   
   private(set) public var id: Int?
   

@@ -34,3 +34,5 @@ public struct LKLessonTimeRange: Codable {
     self.end = rawEnd.toHourString()
   }
 }
+
+extension LKLessonTimeRange: Hashable {}

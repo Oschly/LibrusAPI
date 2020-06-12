@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LKStudent: DecodableFromNestedJSON, ShortFormed {
+public struct LKStudent: NestedInJSON, ShortFormed {
   public static var codingKey: ResponseKeys = .user
   
   public let id: Int?

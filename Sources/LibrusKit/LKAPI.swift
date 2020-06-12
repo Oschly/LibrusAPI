@@ -23,11 +23,11 @@ public final class LKAPI {
     .resume()
   }
   
-  public func getEvents(token: String, completion: @escaping ((Result<[LKEvent], Error>) -> ())) {
+  public func getEvents(credentials: RefreshCredentials, completion: @escaping ((Result<[LKEvent], Error>) -> ())) {
     let url = URL(string: "https://api.librus.pl/2.0/HomeWorks")!
     
     var request = URLRequest(url: url)
-    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+    request.addValue("Bearer \(credentials.token)", forHTTPHeaderField: "Authorization")
     
     URLSession.shared.dataTask(with: request) { data, response, error in
       if let error = error {
@@ -37,8 +37,17 @@ public final class LKAPI {
       guard let data = data else { preconditionFailure() }
       
       do {
-        let decoded = try JSONDecoder.shared.decode(Response<[LKEvent]>.self, from: data)
-        completion(.success(decoded.root))
+        if let decoded = try? JSONDecoder.shared.decode(Response<[LKEvent]>.self, from: data) {
+          completion(.success(decoded.root))
+        } else {
+          let decodedError = try JSONDecoder.shared.decode(ErrorJSON.self, from: data)
+          if decodedError.code == .tokenExpired {
+            LKAuthenticator.instance.refreshAccessToken(credentials: credentials) { [weak self] in
+              guard let self = self else { preconditionFailure() }
+              self.getEvents(credentials: credentials, completion: completion)
+            }
+          }
+        }
       } catch {
         print(error)
       }

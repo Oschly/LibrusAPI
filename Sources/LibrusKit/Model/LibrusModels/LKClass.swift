@@ -79,6 +79,6 @@ public struct LKClass: ShortFormed {
   }
 }
 
-extension LKClass: DecodableFromNestedJSON {
-  public static var codingKey: ResponseKeys = .classGroup
+extension LKClass: NestedInJSON {
+  public static var codingKey: ResponseKeys = .standardClass
 }

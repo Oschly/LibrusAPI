@@ -24,3 +24,5 @@ public struct LKOnlineLesson: Codable {
     self.text = try container.decode(String.self, forKey: .text)
   }
 }
+
+extension LKOnlineLesson: Hashable {}

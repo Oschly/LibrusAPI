@@ -47,6 +47,6 @@ public struct LKSubject: Codable, ShortFormed {
   }
 }
 
-extension LKSubject: DecodableFromNestedJSON {
+extension LKSubject: NestedInJSON {
   public static var codingKey: ResponseKeys = .subject
 }

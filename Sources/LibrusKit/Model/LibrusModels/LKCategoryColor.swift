@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LKCategoryColor: DecodableFromNestedJSON {
+public struct LKCategoryColor: NestedInJSON, ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case rgb = "RGB"
   }

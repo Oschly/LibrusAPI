@@ -45,6 +45,6 @@ public struct LKTeacher: ShortFormed, User {
   }
 }
 
-extension LKTeacher: DecodableFromNestedJSON {
+extension LKTeacher: NestedInJSON {
   public static var codingKey: ResponseKeys = .user
 }

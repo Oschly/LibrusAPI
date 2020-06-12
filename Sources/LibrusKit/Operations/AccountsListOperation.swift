@@ -11,8 +11,7 @@ final class AccountsListOperation: AsyncOperation {
   
   // To be considered for further implementation
   var completion: ((Result<LKAccountsList, Error>) -> ())?
-  var list: LKAccountsList?
-  
+    
   @Storage<AccessToken?>(key: "accessToken", defaultValue: nil)
   private(set) var accessToken: AccessToken?
   
@@ -37,7 +36,6 @@ final class AccountsListOperation: AsyncOperation {
         let list = try? JSONDecoder.shared.decode(LKAccountsList.self, from: data) {
         print("Successfully acquired AccessList, saving it for later use.")
         self.completion?(.success(list))
-        self.list = list
         self.completion = nil
         self.state = .finished
       }

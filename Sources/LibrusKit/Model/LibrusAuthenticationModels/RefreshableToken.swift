@@ -19,3 +19,8 @@ struct Token: RefreshableToken {
   let token: String
   let expiration = Date().addingTimeInterval(360)
 }
+
+public protocol RefreshCredentials {
+  var token: String { get }
+  var login: String { get }
+}
