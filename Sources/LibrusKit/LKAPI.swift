@@ -55,7 +55,7 @@ public final class LKAPI {
     .resume()
   }
   
-  func getTimetable(credentials: RefreshCredentials, completion: @escaping ((Result<[LKEvent], Error>) -> ())){
+  public func getTimetable(credentials: RefreshCredentials, completion: @escaping ((Result<[LKEvent], Error>) -> ())){
     let url = URL(string: "https://api.librus.pl/2.0/Timetables")!
     
     var request = URLRequest(url: url)
