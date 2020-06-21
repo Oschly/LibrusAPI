@@ -11,7 +11,6 @@ public struct LKVirtualClass: ShortFormed, NestedInJSON {
   public static var codingKey: ResponseKeys = .virtualClass
   
   private(set) public var id: Int?
-  
   private(set) public var url: URL?
   
   public init(from decoder: Decoder) {

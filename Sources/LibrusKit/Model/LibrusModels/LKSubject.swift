@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct LKSubject: Codable, ShortFormed {
+public struct LKSubject: ShortFormed {
   private enum CodingKeys: String, CodingKey {
     case name = "Name"
     case isExtracurricular = "IsExtraCurricular"

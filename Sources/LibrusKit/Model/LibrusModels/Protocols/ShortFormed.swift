@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol ShortFormed: Hashable {
+public protocol ShortFormed: Hashable, Codable {
   var id: Int? { get }
   
   var url: URL? { get }
@@ -53,8 +53,6 @@ public extension ShortFormed where Self: NestedInJSON {
     .resume()
   }
 }
-
-
 
 enum ShortFormedCodingKeys: String, CodingKey {
   case id = "Id"
