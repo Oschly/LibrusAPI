@@ -55,7 +55,7 @@ public final class LKAPI {
     .resume()
   }
   
-  public func getTimetable(credentials: RefreshCredentials, completion: @escaping ((Result<[LKEvent], Error>) -> ())){
+  public func getTimetable(credentials: RefreshCredentials, completion: @escaping ((Result<LKTimetable, Error>) -> ())){
     let url = URL(string: "https://api.librus.pl/2.0/Timetables")!
     
     var request = URLRequest(url: url)
@@ -68,7 +68,14 @@ public final class LKAPI {
       
       guard let data = data else { preconditionFailure() }
       
-      dump(String(data: data, encoding: .utf8))
+			do {
+				let decoded = try JSONDecoder.shared.decode(LKTimetable.self, from: data)
+				completion(.success(decoded))
+			} catch {
+				print(error)
+				completion(.failure(error))
+			}
+			
     }.resume()
   }
 }
